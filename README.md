@@ -28,7 +28,7 @@ pod "Oatmeal"
 
 ## Author
 
-mikenolimits, empathynyc@gmail.com
+mikenolimits, http://instagram.com/mikenolimits, http://twitter.com/mikenolimits
 
 ## License
 
