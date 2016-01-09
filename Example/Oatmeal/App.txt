@@ -1,0 +1,55 @@
+[Time: Monday, September 14, 2015, Type: Success]: hello
+[Time: Thursday, December 17, 2015, Type: Success]: Hello!!!
+[Time: Thursday, December 17, 2015, Type: Success]: Hello!!!
+[Time: Thursday, December 17, 2015, Type: Success]: Hello!!!
+[Time: Thursday, December 17, 2015, Type: Success]: Hello!!!
+[Time: Thursday, December 17, 2015, Type: Success]: Hello!!!
+[Time: Thursday, December 17, 2015, Type: Success]: 
+[Time: Tuesday, December 29, 2015, Type: Success]: Hello!!!
+[Time: Tuesday, December 29, 2015, Type: Success]: 
+[Time: Tuesday, December 29, 2015, Type: Success]: Hello!!!
+[Time: Tuesday, December 29, 2015, Type: Success]: 
+[Time: Tuesday, December 29, 2015, Type: Success]: Hello!!!
+[Time: Tuesday, December 29, 2015, Type: Success]: 
+[Time: Tuesday, December 29, 2015, Type: Success]: Hello!!!
+[Time: Sunday, January 3, 2016, Type: Success]: Hello!!!
+[Time: Monday, January 4, 2016, Type: Success]: Hello!!!
+[Time: Tuesday, January 5, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Tuesday, January 5, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Thursday, January 7, 2016, Type: Success]: Hello!!!
+[Time: Thursday, January 7, 2016, Type: Success]: Hello!!!
+[Time: Friday, January 8, 2016, Type: Success]: Hello!!!
+[Time: Friday, January 8, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Saturday, January 9, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Saturday, January 9, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Saturday, January 9, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Saturday, January 9, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Saturday, January 9, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Saturday, January 9, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Saturday, January 9, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Saturday, January 9, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Saturday, January 9, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Saturday, January 9, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Saturday, January 9, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Saturday, January 9, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Saturday, January 9, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Saturday, January 9, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC
+[Time: Saturday, January 9, 2016, Type: Warning]: 
+WARNING: The object 'ImplicitlyUnwrappedOptional<AnyObject>' is not bridgable to ObjectiveC

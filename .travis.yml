@@ -1,0 +1,19 @@
+# references:
+# * http://www.objc.io/issue-6/travis-ci.html
+# * https://github.com/supermarin/xcpretty#usage
+
+language: objective-c
+# cache: cocoapods
+# podfile: Example/Podfile
+# before_install:
+# - gem install cocoapods # Since Travis is not always on latest version
+# - pod install --project-directory=Example
+install:
+- gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+script:
+<<<<<<< HEAD
+- set -o pipefail && xcodebuild test -workspace Example/OatmealFramework.xcworkspace -scheme OatmealFramework-Example -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+=======
+- set -o pipefail && xcodebuild test -workspace Example/Oatmeal.xcworkspace -scheme Oatmeal-Example -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+>>>>>>> 3feadc1ac1c07cd95104e2d326bcbc82aae70e5e
+- pod lib lint --quick

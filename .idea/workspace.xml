@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b967ed9c-e480-41fd-a258-7bc4f26e8b63" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Pod/Classes/Contracts/UsesEvents.swift" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Example/Oatmeal/Foundation.playground/Contents.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Example/Oatmeal/Foundation.playground/Resources/oatmeal.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Example/Oatmeal/Foundation.playground/contents.xcplayground" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Example/Oatmeal/Foundation.playground/timeline.xctimeline" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/NSObject.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/Bool.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/Character.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/Double.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/ExSwift.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/ExSwift.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/Float.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/Info.plist" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/NSArray.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/NSDate.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/Sequence.swift" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Oatmeal.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Example/Oatmeal.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Oatmeal.xcodeproj/xcshareddata/xcschemes/Oatmeal-Example.xcscheme" afterPath="$PROJECT_DIR$/Example/Oatmeal.xcodeproj/xcshareddata/xcschemes/Oatmeal-Example.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Oatmeal/AppDelegate.swift" afterPath="$PROJECT_DIR$/Example/Oatmeal/AppDelegate.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Oatmeal/Framework.playground/Contents.swift" afterPath="$PROJECT_DIR$/Example/Oatmeal/Framework.playground/Contents.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Oatmeal/Framework.playground/contents.xcplayground" afterPath="$PROJECT_DIR$/Example/Oatmeal/Framework.playground/contents.xcplayground" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Oatmeal/ViewController.swift" afterPath="$PROJECT_DIR$/Example/Oatmeal/ViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Oatmeal/ViewPresentor.swift" afterPath="$PROJECT_DIR$/Example/Oatmeal/ViewPresentor.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Podfile" afterPath="$PROJECT_DIR$/Example/Podfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Podfile.lock" afterPath="$PROJECT_DIR$/Example/Podfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Alamofire/README.md" afterPath="$PROJECT_DIR$/Example/Pods/Alamofire/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/AlamofireImage/README.md" afterPath="$PROJECT_DIR$/Example/Pods/AlamofireImage/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/AlamofireImage/Source/ImageDownloader.swift" afterPath="$PROJECT_DIR$/Example/Pods/AlamofireImage/Source/ImageDownloader.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Local Podspecs/Oatmeal.podspec.json" afterPath="$PROJECT_DIR$/Example/Pods/Local Podspecs/Oatmeal.podspec.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Local Podspecs/SwiftyJSON.podspec.json" afterPath="$PROJECT_DIR$/Example/Pods/Local Podspecs/SwiftyJSON.podspec.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Manifest.lock" afterPath="$PROJECT_DIR$/Example/Pods/Manifest.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Pods.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Example/Pods/Pods.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Pods.xcodeproj/xcshareddata/xcschemes/Oatmeal.xcscheme" afterPath="$PROJECT_DIR$/Example/Pods/Pods.xcodeproj/xcshareddata/xcschemes/Oatmeal.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/SwiftyJSON/README.md" afterPath="$PROJECT_DIR$/Example/Pods/SwiftyJSON/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/SwiftyJSON/Source/SwiftyJSON.swift" afterPath="$PROJECT_DIR$/Example/Pods/SwiftyJSON/Source/SwiftyJSON.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Target Support Files/Alamofire/Info.plist" afterPath="$PROJECT_DIR$/Example/Pods/Target Support Files/Alamofire/Info.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Target Support Files/AlamofireImage/Info.plist" afterPath="$PROJECT_DIR$/Example/Pods/Target Support Files/AlamofireImage/Info.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Target Support Files/Oatmeal/Info.plist" afterPath="$PROJECT_DIR$/Example/Pods/Target Support Files/Oatmeal/Info.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Example/Info.plist" afterPath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Example/Info.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Example/Pods-Oatmeal_Example-acknowledgements.markdown" afterPath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Example/Pods-Oatmeal_Example-acknowledgements.markdown" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Example/Pods-Oatmeal_Example-acknowledgements.plist" afterPath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Example/Pods-Oatmeal_Example-acknowledgements.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Example/Pods-Oatmeal_Example-frameworks.sh" afterPath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Example/Pods-Oatmeal_Example-frameworks.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Example/Pods-Oatmeal_Example.debug.xcconfig" afterPath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Example/Pods-Oatmeal_Example.debug.xcconfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Example/Pods-Oatmeal_Example.release.xcconfig" afterPath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Example/Pods-Oatmeal_Example.release.xcconfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Tests/Info.plist" afterPath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Tests/Info.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Tests/Pods-Oatmeal_Tests-acknowledgements.markdown" afterPath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Tests/Pods-Oatmeal_Tests-acknowledgements.markdown" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Tests/Pods-Oatmeal_Tests-acknowledgements.plist" afterPath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Tests/Pods-Oatmeal_Tests-acknowledgements.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Tests/Pods-Oatmeal_Tests-frameworks.sh" afterPath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Tests/Pods-Oatmeal_Tests-frameworks.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Tests/Pods-Oatmeal_Tests.debug.xcconfig" afterPath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Tests/Pods-Oatmeal_Tests.debug.xcconfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Tests/Pods-Oatmeal_Tests.release.xcconfig" afterPath="$PROJECT_DIR$/Example/Pods/Target Support Files/Pods-Oatmeal_Tests/Pods-Oatmeal_Tests.release.xcconfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Example/Pods/Target Support Files/SwiftyJSON/Info.plist" afterPath="$PROJECT_DIR$/Example/Pods/Target Support Files/SwiftyJSON/Info.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Oatmeal.podspec" afterPath="$PROJECT_DIR$/Oatmeal.podspec" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Assets/AtlasPipeline.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Assets/AtlasPipeline.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Assets/ImagePipeline.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Assets/ImagePipeline.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Cache/FileCache.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Cache/FileCache.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Cache/MemoryCache.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Cache/MemoryCache.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Config/Configuration.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Config/Configuration.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Config/Setting.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Config/Setting.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Container/Container.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Container/Container.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Contracts/Cacheable.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Contracts/Cacheable.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Contracts/Resolveable.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Contracts/Resolveable.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Events/Events.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Events/Events.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/ResolveableEntity.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Extensions/ResolveableEntity.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/Array.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/Array.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/Dictionary.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/Dictionary.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/Int.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/Int.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/Range.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/Range.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/String.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Extensions/Swift/String.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Log/FileLog.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Log/FileLog.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Log/HttpLog.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Log/HttpLog.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Model/Model.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Model/Model.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Networking/Networking.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Networking/Networking.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Networking/Reachability.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Networking/Reachability.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Serialization/Property.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Serialization/Property.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Serialization/SerializebleObject.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Serialization/SerializebleObject.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pod/Classes/Serialization/Serializer.swift" afterPath="$PROJECT_DIR$/Pod/Classes/Serialization/Serializer.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+    </list>
+    <ignored path="OatmealFramework.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="_Pods" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1280" />
+    <option name="height" value="800" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="_Pods" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="_Pods" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frameworks" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="_Pods" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Development Pods" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Oatmeal" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="_Pods" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Development Pods" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Oatmeal" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pod" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Classes" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Cidr.FilesView" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="FullScreen" value="true" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b967ed9c-e480-41fd-a258-7bc4f26e8b63" name="Default" comment="" />
+      <created>1450169451279</created>
+      <option name="number" value="Default" />
+      <updated>1450169451279</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+</project>

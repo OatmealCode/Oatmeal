@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Views Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewsController" customModule="Oatmeal_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WRITING APPS IS HARD :(" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="RXv-D3-r1b">
+                                <rect key="frame" x="20" y="274" width="560" height="52"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYP-Ev-g8z">
+                                <rect key="frame" x="79" y="402" width="443" height="59"/>
+                                <color key="backgroundColor" red="0.92549026012420654" green="0.37647062540054321" blue="0.39215689897537231" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="PxS-Pt-wDV"/>
+                                    <constraint firstAttribute="width" constant="443" id="RTE-WV-LEa"/>
+                                    <constraint firstAttribute="height" constant="128" id="X6h-hO-dMr"/>
+                                </constraints>
+                                <state key="normal" title="Press Me">
+                                    <color key="titleShadowColor" red="0.92549026010000002" green="0.37647062539999998" blue="0.392156899" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="X6h-hO-dMr"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="bringTheOats:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="kZu-7N-T7U"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RXv-D3-r1b" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="59" id="3DC-E0-uuk"/>
+                            <constraint firstItem="RXv-D3-r1b" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="4Yn-R0-Uf4"/>
+                            <constraint firstItem="sYP-Ev-g8z" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="59" id="ReK-Ly-uEA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sYP-Ev-g8z" secondAttribute="trailing" constant="58" id="cly-2g-V1H"/>
+                            <constraint firstItem="RXv-D3-r1b" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="dQW-iS-DIN"/>
+                            <constraint firstItem="sYP-Ev-g8z" firstAttribute="top" secondItem="RXv-D3-r1b" secondAttribute="bottom" constant="76" id="jb6-xD-EBw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RXv-D3-r1b" secondAttribute="trailing" id="z5C-IM-R0H"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3DC-E0-uuk"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="Hello" destination="RXv-D3-r1b" id="uHV-va-DCq"/>
+                        <outlet property="helloOatmeal" destination="sYP-Ev-g8z" id="BiP-8r-JOb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="375" y="278"/>
+        </scene>
+    </scenes>
+</document>

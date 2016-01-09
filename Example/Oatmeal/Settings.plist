@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>GameParams</key>
+	<dict>
+		<key>Players</key>
+		<dict>
+			<key>Snake</key>
+			<dict>
+				<key>Wiggle</key>
+				<dict>
+					<key>Frames</key>
+					<array>
+						<string>character_w-01</string>
+						<string>character_w-02</string>
+						<string>character_w-03</string>
+						<string>character_w-04</string>
+						<string>character_w-05</string>
+						<string>character_w-06</string>
+						<string>character_w-07</string>
+					</array>
+					<key>FPS</key>
+					<integer>16</integer>
+					<key>AtlasFileName</key>
+					<string>Worm</string>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+	<key>LOG_LOCATION</key>
+	<string>/Users/michaelkantor/AppcodProjects/Oatmeal/Example/Oatmeal/App.txt</string>
+	<key>LOG_HTTP</key>
+	<true/>
+	<key>LOG_ENABLED</key>
+	<true/>
+</dict>
+</plist>

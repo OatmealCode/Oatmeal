@@ -1,0 +1,6 @@
+framework module Oatmeal {
+  umbrella header "Oatmeal-umbrella.h"
+
+  export *
+  module * { export * }
+}
