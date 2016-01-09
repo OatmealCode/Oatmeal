@@ -7,7 +7,7 @@
 
 ## Usage
 
-```This is ALPHA software. Documentation coming soon ```
+Read documentation at http://getoatmeal.com
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
