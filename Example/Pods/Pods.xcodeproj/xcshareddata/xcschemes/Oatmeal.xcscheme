@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B455D61FEB4AD79990C4F328'
+               BlueprintIdentifier = '0F7CD21412DE044BEC482A8A'
                BlueprintName = 'Oatmeal'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Oatmeal.framework'>

@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Oatmeal"
-  s.version          = "0.2.8"
+  s.version          = "0.3.0"
   s.summary          = "Oatmeal is a refreshing Swift Framework to make bootstrapping your apps much easier."
 
 # This description is used to generate tags and improve search results.
@@ -19,11 +19,11 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = "Oatmeal is a refreshing Swift Framework to make bootstrapping your apps much easier. Mmmkay?"
 
-  s.homepage          = "https://github.com/OatmealCode/Oatmeal"
+s.homepage            = "http://getoatmeal.com"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "mikenolimits" => "empathynyc@gmail.com" }
-  s.source           = { :git => "https://github.com/mikenolimits/Oatmeal.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/OatmealCode/Oatmeal.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/mikenolimits'
 
 s.ios.platform = :ios, "9.0"
