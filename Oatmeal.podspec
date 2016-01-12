@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "Oatmeal"
-  s.version          = "0.2.7"
+  s.version          = "0.2.8"
   s.summary          = "Oatmeal is a refreshing Swift Framework to make bootstrapping your apps much easier."
 
 # This description is used to generate tags and improve search results.
