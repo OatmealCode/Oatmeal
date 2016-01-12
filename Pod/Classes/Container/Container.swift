@@ -67,7 +67,7 @@ public class Container : Oatmeal
            
             return self.get(name) as? O
         }
-        if let auto = O() as? Autoresolveable where auto.customEntityName != ""
+        if let _ = O.self as? Autoresolves, auto = O() as? Autoresolveable where auto.customEntityName != ""
         {
             return self.get(auto.customEntityName) as? O
         }
@@ -131,6 +131,7 @@ public class Container : Oatmeal
         }
     }
     
+    
     public func bind(member: Resolveable)
     {
         //Now that we have both the type and a reference to the class,
@@ -152,6 +153,17 @@ public class Container : Oatmeal
             proactiveMember.didBind()
         }
         
+    }
+    
+    public func unbind(member: Resolveable)
+    {
+        $.map(members)
+        {
+            if($0.1 == member.dynamicType)
+            {
+                self.members.removeValueForKey($0.0)
+            }
+        }
     }
     
     public func bindSingleton(singleton : Resolveable)

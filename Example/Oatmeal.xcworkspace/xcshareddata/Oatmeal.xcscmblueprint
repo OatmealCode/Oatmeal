@@ -5,12 +5,12 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "2D039D4B245FF2ECF70AFB558A1A8ADD48FF9D29" : 0,
-    "40147B6A2F5D729EE75A264D5D4A299C7ADEA8D7" : 0
+    "98D9CFCAA6E8B3ABF9AA0A9273C91006F9A0686F" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6FA90FFC-AE95-456E-A7AB-BD29659CBA6E",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "2D039D4B245FF2ECF70AFB558A1A8ADD48FF9D29" : "OatmealFramework\/",
-    "40147B6A2F5D729EE75A264D5D4A299C7ADEA8D7" : "Oatmeal\/"
+    "98D9CFCAA6E8B3ABF9AA0A9273C91006F9A0686F" : "Oatmeal\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "Oatmeal",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -24,7 +24,7 @@
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mikenolimits\/OatmealFramework.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "40147B6A2F5D729EE75A264D5D4A299C7ADEA8D7"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "98D9CFCAA6E8B3ABF9AA0A9273C91006F9A0686F"
     }
   ]
 }
