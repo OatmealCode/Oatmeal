@@ -252,7 +252,7 @@ extension Networking
     
     public func POST(url:String, type: RequestType? = nil, parameters : [String:String]? = nil,completion:(response: ResponseHandler) -> Void)
     {
-        return fireAs(.PUT, url: url, type: type, parameters: parameters,completion: completion)
+        return fireAs(.POST, url: url, type: type, parameters: parameters,completion: completion)
     }
     
     public func POST<T:SerializebleObject>(url:String, type: RequestType? = nil, parameters : [String:String]? = nil,completion : (response: T, success : Bool)-> Void)
