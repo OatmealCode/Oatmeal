@@ -57,12 +57,32 @@ public class Networking : NSObject,Resolveable
         }
     }
     
-    func fireAs(method: Alamofire.Method,url:String, type: RequestType? = nil, parameters : [String:String]? = nil,completion:(response: ResponseHandler) -> Void )
+    func fireAs(method: Alamofire.Method,url:String, type: RequestType? = nil, parameters : [String:String]? = nil, completion:(response: ResponseHandler) -> Void )
     {
         
         let requestType : RequestType = type ?? .ShouldSendUrlAndReturnJson
-        
-        var route = Route(method: method, baseUrl: url, endpoint: nil, type: requestType)
+
+        // If the URL provided does not start with http or https
+        // we want to use the previously set base url so that
+        // we can build the url from the provided endpoint.
+        var complete = baseUrl ?? ""
+        if let _ = url.rangeOfString("^https?://)", options: .RegularExpressionSearch) {
+            complete = url
+        } else {
+            // Ensure we have a protocol
+            if !complete.hasPrefix("https://") && !complete.hasPrefix("http://") {
+                complete = "http://\(complete)"
+            }
+            
+            // Ensure we don't get double slashes by stripping the last
+            // in the base if there is already one provided with the
+            // endpoint. This allows users to have slashes anyway.
+            if complete.characters.last == "/" && url.characters.first == "/" {
+                complete = "\(complete.substringToIndex(complete.endIndex.predecessor()))\(url)"
+            }
+        }
+
+        var route = Route(method: method, baseUrl: complete, endpoint: nil, type: requestType)
         
         if let params = parameters
         {
@@ -253,7 +273,7 @@ extension Networking
     
     public func POST(url:String, type: RequestType? = nil, parameters : [String:String]? = nil,completion:(response: ResponseHandler) -> Void)
     {
-        return fireAs(.PUT, url: url, type: type, parameters: parameters,completion: completion)
+        return fireAs(.POST, url: url, type: type, parameters: parameters,completion: completion)
     }
     
     public func POST<T:SerializebleObject>(url:String, type: RequestType? = nil, parameters : [String:String]? = nil,completion : (response: T, success : Bool)-> Void)
