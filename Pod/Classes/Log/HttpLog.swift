@@ -8,7 +8,7 @@ public class HttpLog : NSObject,Loggable{
 	let networking : Networking    = (~Oats())!
     let config     : Configuration = (~Oats())!
     var route: Route
-    var handler : completion?
+    var handler : completionHandler?
     
     public static var entityName : String? = "HttpLog"
     
@@ -38,7 +38,7 @@ public class HttpLog : NSObject,Loggable{
         self.route = route
     }
     
-    public func setCompletion(handler : completion)
+    public func setCompletion(handler : completionHandler)
     {
         self.handler = handler
     }

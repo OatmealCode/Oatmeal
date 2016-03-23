@@ -19,6 +19,48 @@ public typealias properties = [String:Property]
 
 public extension Resolveable
 {
+    static var entityName: String? {
+        return ""
+    }
+    
+    static var maxResolutions : Int {
+       return 10
+    }
+    
+    static var resolutionAttempts : Int {
+        get
+        {
+          let mirror = getReflection()
+        
+          if let attempts =  mirror["resolutionAttempts"]?.value as? Int
+          {
+             return attempts
+          }
+          return 0
+        }
+        set(newValue)
+        {
+            let mirror = getReflection()
+            
+            mirror["resolutionAttempts"]?.value = newValue
+        }
+    }
+    
+    
+    static func getReflection() -> properties
+    {
+        guard let reflector : Reflections = Oats().get("Reflections") as?Reflections, dynamicName = entityName else
+        {
+            return properties()
+        }
+        let name  = String(dynamicName).capitalizedString.replace(".Type",withString: "")
+        
+        if let mirror  =  reflector.get(name)
+        {
+            return mirror
+        }
+        return properties()
+    }
     
     public var cost: Int
     {
@@ -114,38 +156,19 @@ public extension Resolveable
         return jObject
     }
  
-    public func toProps() -> properties
+    public func toProps(fromJson : Bool = true) -> properties
     {
         //If the properties were already parsed, we're just going to fetch them.
-        if let reflector : Reflections = ~Oats(),props = reflector.get(getName())
-        {
-            return props
-        }
-        let reflectedModel       = Mirror(reflecting: self)
-        var reflectedProperties  = properties()
         
-        //First we're going to reflect the type and grab the types of properties
-        
-        if let  children = AnyRandomAccessCollection(reflectedModel.children)
+        var reflectedProperties = properties()
+        if let reflector : Reflections = ~Oats()
         {
-            
-            for (optionalPropertyName, value) in children
+            if let props = reflector.get(getName()) where fromJson
             {
-                if let name  = optionalPropertyName
-                {
-                
-                    let propMirror = Mirror(reflecting: value)
-                    let type       = Oats().open(value)
-                    let property   = Property(mirror: propMirror, label : name,value : value, type : type)
-                    let optionalMirror = Mirror(reflecting: value)
-                    
-                    if let (_,optionalValue) = optionalMirror.children.first  where optionalMirror.children.count != 0
-                    {
-                        property.unwrappedOptional = optionalValue
-                    }
-                    reflectedProperties[name] = property
-                }
+                 return props
             }
+        
+            reflectedProperties = reflector.reflect(self)
         }
         return reflectedProperties
     }
@@ -211,7 +234,12 @@ public extension Resolveable
     {
         let dynamicName = self.dynamicType
         var name = ""
-        if let entityName = dynamicName.entityName{
+        if let cast = self as? Autoresolves where cast.customEntityName != ""
+        {
+            name = cast.customEntityName
+        }
+        else if let entityName = dynamicName.entityName
+        {
             name = entityName
         }
         else

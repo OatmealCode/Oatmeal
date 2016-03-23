@@ -29,6 +29,12 @@ class ViewsController: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let s = Github()
+        
+        s <~> Oats()
+        
+        Oats().unbindSingleton(s)
+        
         
         self.setEvents()
         self.checkDependencies()
@@ -38,22 +44,14 @@ class ViewsController: UIViewController
         {
             print(players["Snake"])
         }
-        
-        if let cache : FileCache = ~Oats()
-        {
-            cache.get("github", completion: {
-                (git:Github) in
-            })
-        }
-        
-        
+    
         
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     func setEvents()
     {
-        if let events : Events = ~Oats(), http: Networking = ~Oats() where http.isConnected
+        if let events : Events = ~Oats(), http: Networking = ~Oats()
         {
             print("Listening for presented...")
             events.listenFor("presented", global: true, handler: {
@@ -68,45 +66,19 @@ class ViewsController: UIViewController
     {
         http.GET("https://api.spotify.com/v1/tracks/0eGsygTp906u18L0Oimnem", completion: {
             (song : Song, success) in
-            
-            
-            if let cache : FileCache = ~Oats()
+            song.href = "http://google.com"
+            if let cloud : CloudStorage = ~Oats()
             {
-                cache.set("song",value: song)
-                cache.get("song", completion:  {
-                    handler in
+                cloud.set(song, key: song.name!)
+                {
+                    response in
                     
-                    if let json = handler.response
-                    {
-                        let MrBrightside = json["object"]
-                        let albumData    = json["object"]["album"]["object"].dictionaryValue
-                        print(MrBrightside)
-                        let song = Song()
-                        let album = Album()
-                        song.name = MrBrightside["name"].stringValue
-                        song.href = MrBrightside["href"].stringValue
-                        album.name = albumData["name"]?.stringValue
-                        album.href = albumData["href"]?.stringValue
-                        if let markets = albumData["available_markets"]?.arrayValue
-                        {
-                              var available_markets = [String]()
-                              for i in markets
-                              {
-                                available_markets.append(i.stringValue)
-                              }
-                              album.available_markets = available_markets
-                        }
-                        print(album)
-                    }
-                    
-                })
+                }
             }
-            print(song.name)
-            print(song.album?.name)
-            print(song.album?.available_markets)
+           
         })
     
-        http.GET("https://api.github.com/repos/mikenolimits/Oatmeal", completion:  {
+        http.GET("https://api.github.com/repos/OatmealCode/Oatmeal", completion:  {
               (response:Github,success) in
             
               print(response.name)

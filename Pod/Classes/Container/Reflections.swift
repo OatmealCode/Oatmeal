@@ -13,6 +13,7 @@ import Foundation
 public class Reflections : Resolveable
 {
     public static var entityName : String? = "Reflections"
+    
     typealias reflected = [String: properties]
     
     private var mirrors : reflected
@@ -61,9 +62,61 @@ public class Reflections : Resolveable
             .replace("-", withString: "_")
     }
     
-    public func set(key:String, value : properties)
+    public func set(key:String, var value : properties)
     {
+        let resolutionAttempts      = Property()
+        resolutionAttempts.value    = 0
+        resolutionAttempts.label    = "resoltionAttempts"
+        value["resolutionAttempts"] = resolutionAttempts
         mirrors[key] = value
+    }
+    
+    public func reflect(member:Resolveable) -> properties
+    {
+        var reflectedProperties   = properties()
+        let reflectedMember       = Mirror(reflecting: member)
+        
+        //First we're going to reflect the type and grab the types of properties
+        
+        if let  children = AnyRandomAccessCollection(reflectedMember.children)
+        {
+            
+            for (optionalPropertyName, value) in children
+            {
+                if let name  = optionalPropertyName
+                {
+                    
+                    let propMirror = Mirror(reflecting: value)
+                    let type       = Reflections.open(value)
+                    let property   = Property(mirror: propMirror, label : name,value : value, type : type)
+                    
+                    if let (_,optionalValue) = propMirror.children.first  where propMirror.children.count != 0
+                    {
+                        property.unwrappedOptional = optionalValue
+                    }
+                    reflectedProperties[name] = property
+                }
+            }
+        }
+        self[member.getName()] = reflectedProperties
+
+        return reflectedProperties
+    }
+    
+    class func open(any: Any?) -> Any.Type
+    {
+        let mi = Mirror(reflecting: any)
+        
+        if let children = AnyRandomAccessCollection(mi.children)
+        {
+            if mi.children.count == 0 { return NullElement.self }
+            for (_, value) in children
+            {
+                return value.dynamicType
+            }
+        }
+        
+        return mi.subjectType
     }
     
     public func has(key:String)->Bool

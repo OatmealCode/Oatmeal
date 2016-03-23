@@ -11,14 +11,14 @@ import Alamofire
 import AlamofireImage
 import SwiftyJSON
 
-public typealias completion  = (response: ResponseHandler) -> Void
 
 public class Networking : NSObject,Resolveable
 {
     public static var entityName : String? = "Networking"
     
-    public var done  : completion?
-    public var error : completion?
+    
+    public var done  : completionHandler?
+    public var error : completionHandler?
     
     public var isConnected : Bool
     {
@@ -206,6 +206,7 @@ public class Networking : NSObject,Resolveable
             handler.response       = SwiftyJSON.JSON(data)
             handler.responseString = String(data)
             handler.headers        = response?.allHeaderFields
+            handler.success        = true
             
         case .Failure(let error):
             handler.message = "Request failed with error: \(error)"

@@ -1,7 +1,7 @@
 import Foundation
 
 
-public class Setting : SerializebleObject{
+public class Setting : Autoresolveable{
 
 	 public var name   : String
 	 public var cached : Bool
@@ -18,6 +18,7 @@ public class Setting : SerializebleObject{
         self.value     = value
         self.namespace = namespace
         super.init()
+        self.customEntityName = name
 	}
     
     init(name:String, value : Any,cached : Bool = false, namespace : String = "")
@@ -27,6 +28,7 @@ public class Setting : SerializebleObject{
         self.value     = value
         self.namespace = namespace
         super.init()
+             self.customEntityName = name
     }
 
     public required init()
@@ -36,6 +38,7 @@ public class Setting : SerializebleObject{
         self.value = ""
         self.namespace = "global"
         super.init()
+        self.customEntityName = name
     }
     
 

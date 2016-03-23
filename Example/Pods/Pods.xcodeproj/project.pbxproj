@@ -138,6 +138,9 @@
 		DE39224AA0AD1DEF14BC7CE35AE0E914 /* ResolveableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD653D798D9FE991F090FC292B8BF42 /* ResolveableEntity.swift */; };
 		E0210F6D16F33C983DF9C4EB4E9567D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B5DA16E78998F27DD594D2C481E751 /* Foundation.framework */; };
 		E04430A918C0B77FB7A0C9485FD2B25B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD3A4C5D300975126B2B50B369FE83 /* Event.swift */; };
+		E7C1C7C11C54313400CAE6D2 /* Storageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1C7C01C54313400CAE6D2 /* Storageable.swift */; };
+		E7C1C7C41C54319200CAE6D2 /* CloudStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1C7C31C54319200CAE6D2 /* CloudStorage.swift */; };
+		E7C1C7C61C54455900CAE6D2 /* ResolveableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1C7C51C54455900CAE6D2 /* ResolveableRecord.swift */; };
 		E829F2FF613B8CA4F0B5363D67AB831B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B5DA16E78998F27DD594D2C481E751 /* Foundation.framework */; };
 		E88029C4309FC42CF3BD60EA33EE6B89 /* NSUserDefaultsCacheLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F2E31804F382980A0867B5319A5495 /* NSUserDefaultsCacheLevel.swift */; };
 		E8872E924526A05D51A54C06D4E1894E /* UIImageView+AlamofireImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C708974E8EFB194BF1ECDFADED81F848 /* UIImageView+AlamofireImage.swift */; };
@@ -433,6 +436,9 @@
 		E27168313E870D31224613267845E6B2 /* Pods-Oatmeal_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Oatmeal_Example.modulemap"; sourceTree = "<group>"; };
 		E2F0B8E3DF43DFF06B1D9C67D19E083C /* MemoryCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MemoryCache.swift; sourceTree = "<group>"; };
 		E73971780D1735810EC4FE378E38E2B9 /* Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Source/Error.swift; sourceTree = "<group>"; };
+		E7C1C7C01C54313400CAE6D2 /* Storageable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storageable.swift; sourceTree = "<group>"; };
+		E7C1C7C31C54319200CAE6D2 /* CloudStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudStorage.swift; sourceTree = "<group>"; };
+		E7C1C7C51C54455900CAE6D2 /* ResolveableRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResolveableRecord.swift; sourceTree = "<group>"; };
 		E9B81CE5CF8B5E01DCA90D4B2906139B /* ImageTransformer+iOS.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ImageTransformer+iOS.swift"; path = "Carlos/ImageTransformer+iOS.swift"; sourceTree = "<group>"; };
 		EA2E675B906B2C29EB12FFEB67F5A75D /* Oatmeal-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Oatmeal-prefix.pch"; sourceTree = "<group>"; };
 		EC57A47E8A5943B8D8A8913F89BD15C9 /* Pods-Oatmeal_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Oatmeal_Example-resources.sh"; sourceTree = "<group>"; };
@@ -718,6 +724,7 @@
 				305C6F965D456940B01A60342242E8A3 /* Resolveable.swift */,
 				C9EB75A95EC4F20603AEFD7C62CF157D /* ServiceProvider.swift */,
 				197CDFB63AD4AF0F56663C63FED22A3B /* UsesEvents.swift */,
+				E7C1C7C01C54313400CAE6D2 /* Storageable.swift */,
 			);
 			path = Contracts;
 			sourceTree = "<group>";
@@ -882,6 +889,7 @@
 		C9D01BA021DC86F9E23D33E560D54775 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E7C1C7C21C54314A00CAE6D2 /* Filesystem */,
 				86B7C9EB2731958BD95927C62925E547 /* ContainerException.swift */,
 				1E6C3DDC0612D5E55AE4FF6FF9001542 /* Controller.swift */,
 				CE35EA0E1224B7B2BD99733E8303724E /* Assets */,
@@ -937,6 +945,15 @@
 				27B5DA16E78998F27DD594D2C481E751 /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		E7C1C7C21C54314A00CAE6D2 /* Filesystem */ = {
+			isa = PBXGroup;
+			children = (
+				E7C1C7C31C54319200CAE6D2 /* CloudStorage.swift */,
+				E7C1C7C51C54455900CAE6D2 /* ResolveableRecord.swift */,
+			);
+			name = Filesystem;
 			sourceTree = "<group>";
 		};
 		F2B5A25B7B97D210783803CA21CCA109 /* Extensions */ = {
@@ -1275,6 +1292,7 @@
 				7C3976BE61C35AB19DCB209419112E90 /* ContainerException.swift in Sources */,
 				9EAB134FADC13299BEDD01B09A42749D /* ContainerOperators.swift in Sources */,
 				8B87A08C711443B57DD75268C6178C69 /* Controller.swift in Sources */,
+				E7C1C7C11C54313400CAE6D2 /* Storageable.swift in Sources */,
 				6A4E3673A789EB1C3587D6C647D2181C /* Date.swift in Sources */,
 				9E59293E8032A7747B703900C1E9FE54 /* Dictionary.swift in Sources */,
 				2A6217C80C715297DEA9D6F03B725A6F /* Dollar.swift in Sources */,
@@ -1289,6 +1307,7 @@
 				9B5B6F331FCE25D54C43E33EE6403BD7 /* Loggable.swift in Sources */,
 				3568DEAB99E1F7395262E8E58FF1E8DC /* LogType.swift in Sources */,
 				2C63E6B181A9B3B5A93F28D4814E8B1D /* MemoryCache.swift in Sources */,
+				E7C1C7C61C54455900CAE6D2 /* ResolveableRecord.swift in Sources */,
 				944EF75CF2CB104FA319781C88A164CC /* Model.swift in Sources */,
 				818C96B5E7DB6A0B94311EC0E23173A2 /* Modelable+Entity.swift in Sources */,
 				2157A0E714D9C083CE65A123E8141571 /* Modelable.swift in Sources */,
@@ -1306,6 +1325,7 @@
 				43B7618A0053525AF3F81ABAD1AB8587 /* Regex.swift in Sources */,
 				A5EBAAE6AF7431D9A7F9F5D347EB14EC /* RequestType.swift in Sources */,
 				5AA6B52B68B938A725D47A2006294D49 /* Resolveable.swift in Sources */,
+				E7C1C7C41C54319200CAE6D2 /* CloudStorage.swift in Sources */,
 				DE39224AA0AD1DEF14BC7CE35AE0E914 /* ResolveableEntity.swift in Sources */,
 				0953502B7ECCC9D1D905C154857CDCD6 /* ResponseHandler.swift in Sources */,
 				7467BA10D87A72A5AD533687ED8C957E /* Route.swift in Sources */,

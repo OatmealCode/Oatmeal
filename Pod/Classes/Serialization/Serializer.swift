@@ -350,7 +350,7 @@ public class Serializer : NSObject,Resolveable
     
     func open(any: Any?) -> Any.Type
     {
-        return Serializer.open(any)
+        return Reflections.open(any)
     }
     
     /*
@@ -359,7 +359,7 @@ public class Serializer : NSObject,Resolveable
     */
     class func open(any: Any?) -> Any.Type
     {
-        return Oats().open(any)
+        return Reflections.open(any)
     }
     
 }

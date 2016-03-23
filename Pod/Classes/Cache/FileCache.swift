@@ -52,8 +52,8 @@ public class FileCache : NSObject,Cacheable{
     
     public func set<T: Resolveable>(key:String,value:T)
     {
-        let json      = value.toJSON()
-        let fileCache = DiskCacheLevel<String, NSData>(capacity: 999999)
+        let json        = value.toJSON()
+        let fileCache   = DiskCacheLevel<String, NSData>(capacity: 999999)
         if let asString = json.rawString(), encoded = asString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
         {
            fileCache.set(encoded, forKey: key)

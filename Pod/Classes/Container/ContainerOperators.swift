@@ -8,6 +8,9 @@
 import SwiftyJSON
 
 
+public typealias completionHandler    = (response: ResponseHandler) -> Void
+public typealias serializedCompletion = (response: SerializebleObject, success : Bool) -> Void
+
 prefix operator ~{}
 infix operator <~>{associativity left precedence 140}
 

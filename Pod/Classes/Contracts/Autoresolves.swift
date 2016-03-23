@@ -18,7 +18,6 @@ public protocol Autoresolves : Resolveable
     func setValue(value: AnyObject!, forUndefinedKey key: String)
     
     
-    
     /**
      
      **/

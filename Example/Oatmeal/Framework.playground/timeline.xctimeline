@@ -3,22 +3,27 @@
    version = "3.0">
    <TimelineItems>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "#CharacterRangeLen=0&amp;CharacterRangeLoc=8827&amp;EndingColumnNumber=8&amp;EndingLineNumber=285&amp;StartingColumnNumber=5&amp;StartingLineNumber=284&amp;Timestamp=474014695.732309"
+         documentLocation = "#CharacterRangeLen=0&amp;CharacterRangeLoc=9066&amp;EndingColumnNumber=8&amp;EndingLineNumber=8&amp;StartingColumnNumber=5&amp;StartingLineNumber=8&amp;Timestamp=474459196.166289"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "#CharacterRangeLen=1&amp;CharacterRangeLoc=8834&amp;EndingColumnNumber=6&amp;EndingLineNumber=288&amp;StartingColumnNumber=5&amp;StartingLineNumber=288&amp;Timestamp=474014695.732523"
+         documentLocation = "#CharacterRangeLen=0&amp;CharacterRangeLoc=9066&amp;EndingColumnNumber=6&amp;EndingLineNumber=8&amp;StartingColumnNumber=5&amp;StartingLineNumber=8&amp;Timestamp=474459196.166609"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "#CharacterRangeLen=6&amp;CharacterRangeLoc=8853&amp;EndingColumnNumber=11&amp;EndingLineNumber=289&amp;StartingColumnNumber=5&amp;StartingLineNumber=288&amp;Timestamp=474014695.732627"
+         documentLocation = "#CharacterRangeLen=0&amp;CharacterRangeLoc=9066&amp;EndingColumnNumber=11&amp;EndingLineNumber=8&amp;StartingColumnNumber=5&amp;StartingLineNumber=8&amp;Timestamp=474459196.166883"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/michaelkantor/AppcodProjects/Oatmeal/Example/Oatmeal/Framework.playground#CharacterRangeLen=48&amp;CharacterRangeLoc=8780&amp;EndingLineNumber=285&amp;StartingLineNumber=284&amp;Timestamp=474014695.732727"
+         documentLocation = "file:///Users/michaelkantor/AppcodProjects/Oatmeal/Example/Oatmeal/Framework.playground#CharacterRangeLen=0&amp;CharacterRangeLoc=9066&amp;EndingLineNumber=8&amp;StartingLineNumber=8&amp;Timestamp=474459196.167147"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "#CharacterRangeLen=0&amp;CharacterRangeLoc=9066&amp;EndingColumnNumber=9&amp;EndingLineNumber=8&amp;StartingColumnNumber=1&amp;StartingLineNumber=8&amp;Timestamp=474459196.167359"
          selectedRepresentationIndex = "0"
          shouldTrackSuperviewWidth = "NO">
       </LoggerValueHistoryTimelineItem>

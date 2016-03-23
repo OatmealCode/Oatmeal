@@ -25,7 +25,7 @@ final class OatmealServiceProvider : ServiceProvider
         Networking.self,
         HttpLog.self,
         Serializer.self,
-        Reflections.self,
+        CloudStorage.self,
         Owner.self,
         Github.self,
         Person.self,

@@ -109,9 +109,6 @@ import Foundation
         localListeners.removeValueForKey(event)
     }
     
-
-
-    
     public func flush()
     {
         //Loop through the current controllers events & "flush" them

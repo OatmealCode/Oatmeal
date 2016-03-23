@@ -22,7 +22,7 @@ public class Configuration : NSObject,Resolveable
     
     required public override init()
     {
-        if let cache : FileCache = ~Oats()
+        if let cache : MemoryCache = ~Oats()
         {
             self.cache = cache
         }
@@ -32,7 +32,7 @@ public class Configuration : NSObject,Resolveable
     
     public init(location:String)
     {
-        if let cache : FileCache = ~Oats()
+        if let cache : MemoryCache = ~Oats()
         {
             self.cache = cache
         }

@@ -42,9 +42,17 @@ public class MemoryCache : NSObject,Cacheable{
             completion(response: handler)
         }
         request.onFailure { error in
-            handler.success = false
-            handler.error   = error
-            completion(response: handler)
+            
+            if let fileCache : FileCache = ~Oats() where self.linkToDisk
+            {
+                fileCache.get(key, completion: completion)
+            }
+            else
+            {
+                 handler.success = false
+                 handler.error   = error
+                 completion(response: handler)
+            }
         }
     }
 
@@ -60,6 +68,11 @@ public class MemoryCache : NSObject,Cacheable{
         {
             print("Setting \(asString)")
             memoryCache.set(encoded, forKey: key)
+            
+            if let fileCache : FileCache = ~Oats() where linkToDisk
+            {
+                fileCache.set(key, value: value)
+            }
         }
     }
     

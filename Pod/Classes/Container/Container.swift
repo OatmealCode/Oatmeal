@@ -61,10 +61,18 @@ public class Container : Oatmeal
     */
     public func get<O : Resolveable>() -> O?
     {
+        if(O.resolutionAttempts >= O.maxResolutions)
+        {
+            print("Member \(O.entityName) exceeded resolution attempts of \(O.resolutionAttempts)")
+            
+            return nil
+        }
+        O.resolutionAttempts++
+        
         guard let name = O.entityName else
         { 
             let name = getDynamicName(String(O))
-           
+            
             return self.get(name) as? O
         }
         if let _ = O.self as? Autoresolves, auto = O() as? Autoresolveable where auto.customEntityName != ""
@@ -82,6 +90,7 @@ public class Container : Oatmeal
     {
         if let member = members[key]
         {
+            member.resolutionAttempts = 0
             let entity = member.init()
             //The instance method for didResolve will only work with an itialized object
             self.didResolve(entity)
@@ -157,11 +166,11 @@ public class Container : Oatmeal
     
     public func unbind(member: Resolveable)
     {
-        $.map(members)
+        for member in members
         {
-            if($0.1 == member.dynamicType)
+            if(member.1 == member.dynamicType)
             {
-                self.members.removeValueForKey($0.0)
+                self.members.removeValueForKey(member.0)
             }
         }
     }
@@ -169,6 +178,19 @@ public class Container : Oatmeal
     public func bindSingleton(singleton : Resolveable)
     {
         self.singletons.append(singleton)
+    }
+    
+    public func unbindSingleton(singleton:Resolveable)
+    {
+        let name = singleton.getName()
+        
+        for(var i = 0; i <= singletons.count; i++)
+        {
+            if(singletons[i].getName() == name)
+            {
+                singletons.removeAtIndex(i)
+            }
+        }
     }
     
     public func bindIf(condition : () -> Bool, withMember : Resolveable.Type,completion : () -> ())
@@ -222,20 +244,5 @@ public class Container : Oatmeal
         }
     }
     
-    
-    public func open(any: Any?) -> Any.Type
-    {
-        let mi = Mirror(reflecting: any)
-        
-        if let children = AnyRandomAccessCollection(mi.children)
-        {
-            if mi.children.count == 0 { return NullElement.self }
-            for (_, value) in children
-            {
-                return value.dynamicType
-            }
-        }
-        
-        return mi.subjectType
-    }
+
 }

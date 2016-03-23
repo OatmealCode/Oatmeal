@@ -26,8 +26,6 @@ public class AtlasPipeline : ProactiveResolveable
     public var atlases : [String:SKTextureAtlas]
     
     public var config : Configuration?
-    
-    public static var atlas = AtlasPipeline()
 
 	public required init()
 	{
