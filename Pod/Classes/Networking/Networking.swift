@@ -78,9 +78,17 @@ public class Networking : NSObject,Resolveable
             // Ensure we don't get double slashes by stripping the last
             // in the base if there is already one provided with the
             // endpoint. This allows users to have slashes anyway.
-            if complete.characters.last == "/" && url.characters.first == "/" {
-                complete = "\(complete.substringToIndex(complete.endIndex.predecessor()))\(url)"
+            if complete.characters.last == "/" {
+                complete = complete.substringToIndex(complete.endIndex.predecessor())
             }
+            
+            var endpoint = url
+            
+            if endpoint.characters.first == "/" {
+                endpoint = endpoint.substringFromIndex(endpoint.startIndex.successor())
+            }
+            
+            complete = "\(complete)/\(endpoint)"
         }
 
         var route = Route(method: method, baseUrl: complete, endpoint: nil, type: requestType)
