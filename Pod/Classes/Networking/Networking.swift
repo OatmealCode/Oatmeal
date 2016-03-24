@@ -67,7 +67,7 @@ public class Networking : NSObject,Resolveable
         // we want to use the previously set base url so that
         // we can build the url from the provided endpoint.
         var complete = baseUrl ?? ""
-        if let _ = url.rangeOfString("^https?://)", options: .RegularExpressionSearch) {
+        if let _ = url.rangeOfString("^https?://", options: .RegularExpressionSearch) {
             complete = url
         } else {
             // Ensure we have a protocol
