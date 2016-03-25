@@ -67,7 +67,7 @@ public class Networking : NSObject,Resolveable
         // we want to use the previously set base url so that
         // we can build the url from the provided endpoint.
         var complete = baseUrl ?? ""
-        if let _ = url.rangeOfString("^https?://)", options: .RegularExpressionSearch) {
+        if let _ = url.rangeOfString("^https?://", options: .RegularExpressionSearch) {
             complete = url
         } else {
             // Ensure we have a protocol
@@ -78,9 +78,17 @@ public class Networking : NSObject,Resolveable
             // Ensure we don't get double slashes by stripping the last
             // in the base if there is already one provided with the
             // endpoint. This allows users to have slashes anyway.
-            if complete.characters.last == "/" && url.characters.first == "/" {
-                complete = "\(complete.substringToIndex(complete.endIndex.predecessor()))\(url)"
+            if complete.characters.last == "/" {
+                complete = complete.substringToIndex(complete.endIndex.predecessor())
             }
+            
+            var endpoint = url
+            
+            if endpoint.characters.first == "/" {
+                endpoint = endpoint.substringFromIndex(endpoint.startIndex.successor())
+            }
+            
+            complete = "\(complete)/\(endpoint)"
         }
 
         var route = Route(method: method, baseUrl: complete, endpoint: nil, type: requestType)
