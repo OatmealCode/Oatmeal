@@ -66,7 +66,7 @@ public class Reflections : Resolveable
     {
         let resolutionAttempts      = Property()
         resolutionAttempts.value    = 0
-        resolutionAttempts.label    = "resoltionAttempts"
+        resolutionAttempts.label    = "resolutionAttempts"
         value["resolutionAttempts"] = resolutionAttempts
         mirrors[key] = value
     }

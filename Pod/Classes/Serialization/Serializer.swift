@@ -9,11 +9,7 @@ public class Serializer : NSObject,Resolveable
     public typealias j              = SwiftyJSON.JSON
     
     public var reflectedProperties : properties = properties()
-    public var castable : [Any.Type?] = [Any.Type?]() {
-        didSet{
-            print(castable,terminator:"\n")
-        }
-}
+    public var castable                         = [Any.Type?]()
     
     static var arrayMap : [String:Any.Type?]  =
     [

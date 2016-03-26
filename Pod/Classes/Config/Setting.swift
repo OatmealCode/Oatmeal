@@ -28,7 +28,7 @@ public class Setting : Autoresolveable{
         self.value     = value
         self.namespace = namespace
         super.init()
-             self.customEntityName = name
+        self.customEntityName = name
     }
 
     public required init()

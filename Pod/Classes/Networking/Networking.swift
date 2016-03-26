@@ -11,14 +11,15 @@ import Alamofire
 import AlamofireImage
 import SwiftyJSON
 
+public typealias completion  = (response: ResponseHandler) -> Void
 
 public class Networking : NSObject,Resolveable
 {
     public static var entityName : String? = "Networking"
     
-    
-    public var done  : completionHandler?
-    public var error : completionHandler?
+    public var done  : completion?
+    public var error : completion?
+    public var baseUrl : String?
     
     public var isConnected : Bool
     {
@@ -47,7 +48,7 @@ public class Networking : NSObject,Resolveable
     }
     
     public subscript(key : String) -> String
-    {
+        {
         get{
             return self.headers[key] ?? ""
         }
@@ -61,12 +62,12 @@ public class Networking : NSObject,Resolveable
     {
         
         let requestType : RequestType = type ?? .ShouldSendUrlAndReturnJson
-
+        
         // If the URL provided does not start with http or https
         // we want to use the previously set base url so that
         // we can build the url from the provided endpoint.
         var complete = baseUrl ?? ""
-        if let _ = url.rangeOfString("^https?://)", options: .RegularExpressionSearch) {
+        if let _ = url.rangeOfString("^https?://", options: .RegularExpressionSearch) {
             complete = url
         } else {
             // Ensure we have a protocol
@@ -77,11 +78,19 @@ public class Networking : NSObject,Resolveable
             // Ensure we don't get double slashes by stripping the last
             // in the base if there is already one provided with the
             // endpoint. This allows users to have slashes anyway.
-            if complete.characters.last == "/" && url.characters.first == "/" {
-                complete = "\(complete.substringToIndex(complete.endIndex.predecessor()))\(url)"
+            if complete.characters.last == "/" {
+                complete = complete.substringToIndex(complete.endIndex.predecessor())
             }
+            
+            var endpoint = url
+            
+            if endpoint.characters.first == "/" {
+                endpoint = endpoint.substringFromIndex(endpoint.startIndex.successor())
+            }
+            
+            complete = "\(complete)/\(endpoint)"
         }
-
+        
         var route = Route(method: method, baseUrl: complete, endpoint: nil, type: requestType)
         
         if let params = parameters
@@ -103,7 +112,7 @@ public class Networking : NSObject,Resolveable
             self.fire(route,completion: { handler in })
         }
     }
-
+    
     
     public func fire(var route : Route, completion:(response: ResponseHandler) -> Void)
     {
@@ -113,7 +122,7 @@ public class Networking : NSObject,Resolveable
             NSThread.sleepForTimeInterval(1)
         }
         if(pendingRequest)
-        {            
+        {
             if let networking : Networking = ~Oats()
             {
                 self.currentRequests++
@@ -122,75 +131,75 @@ public class Networking : NSObject,Resolveable
         }
         else
         {
-        //First we create the context of the request
-        //Allowing for the developer to have full control over the request
-        self.pendingRequest = true
-        
-        if let config  = route.customConfiguration
-        {
-            manager = Alamofire.Manager(configuration: config, serverTrustPolicyManager: nil)
-        }
-        else
-        {
-            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-            config.timeoutIntervalForResource = 600
-            config.HTTPAdditionalHeaders      = Manager.defaultHTTPHeaders
+            //First we create the context of the request
+            //Allowing for the developer to have full control over the request
+            self.pendingRequest = true
             
-            manager = Alamofire.Manager(configuration: config, serverTrustPolicyManager: route.sslPolicy)
-        }
-            
-        if(headers.count >= 1)
-        {
-           route.headers = headers
-        }
-        
-        switch(route.type)
-        {
-        case .ShouldSendUrlAndReturnJson, .ShouldSendJsonAndReturnIt:
-            
-            manager.request(route.compose()).responseJSON { result in
-                var handler = self.getHandler(result.response,result: result.result)
-                handler     = self.adjustToExpectation(route, handler: handler)
-                self.pendingRequest = false
-                self.currentRequests--
-                completion(response: handler)
+            if let config  = route.customConfiguration
+            {
+                manager = Alamofire.Manager(configuration: config, serverTrustPolicyManager: nil)
             }
-        case .ShouldSendJsonAndReturnString,.ShouldSendUrlAndReturnString:
-            manager.request(route.compose()).responseString{ result in
-                var handler = self.getHandler(result.response,result: result.result)
-                handler     = self.adjustToExpectation(route, handler: handler)
-                self.pendingRequest = false
-                 self.currentRequests--
-                completion(response: handler)
+            else
+            {
+                let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+                config.timeoutIntervalForResource = 600
+                config.HTTPAdditionalHeaders      = Manager.defaultHTTPHeaders
+                
+                manager = Alamofire.Manager(configuration: config, serverTrustPolicyManager: route.sslPolicy)
             }
-         }
-        }
-        }
-        
-        func adjustToExpectation(route:Route, var handler:ResponseHandler)->ResponseHandler
-        {
+            
+            if(headers.count >= 1)
+            {
+                route.headers = headers
+            }
+            
             switch(route.type)
             {
             case .ShouldSendUrlAndReturnJson, .ShouldSendJsonAndReturnIt:
-                //Oh look here, we have no json, lets fix that.
-                guard let _ = handler.response else{
-                    let msg   = ["data" : ["message" : "No response recieved"]]
-                    let json : JSON = JSON(msg)
-                    handler.response = json
-                    return handler
-                }
                 
+                manager.request(route.compose()).responseJSON { result in
+                    var handler = self.getHandler(result.response,result: result.result)
+                    handler     = self.adjustToExpectation(route, handler: handler)
+                    self.pendingRequest = false
+                    self.currentRequests--
+                    completion(response: handler)
+                }
             case .ShouldSendJsonAndReturnString,.ShouldSendUrlAndReturnString:
-                
-                guard let _ = handler.responseString else{
-                    handler.responseString = "No Response recieved"
-                    return handler
+                manager.request(route.compose()).responseString{ result in
+                    var handler = self.getHandler(result.response,result: result.result)
+                    handler     = self.adjustToExpectation(route, handler: handler)
+                    self.pendingRequest = false
+                    self.currentRequests--
+                    completion(response: handler)
                 }
-                
+            }
+        }
+    }
+    
+    func adjustToExpectation(route:Route, var handler:ResponseHandler)->ResponseHandler
+    {
+        switch(route.type)
+        {
+        case .ShouldSendUrlAndReturnJson, .ShouldSendJsonAndReturnIt:
+            //Oh look here, we have no json, lets fix that.
+            guard let _ = handler.response else{
+                let msg   = ["data" : ["message" : "No response recieved"]]
+                let json : JSON = JSON(msg)
+                handler.response = json
+                return handler
             }
             
-            return handler
+        case .ShouldSendJsonAndReturnString,.ShouldSendUrlAndReturnString:
+            
+            guard let _ = handler.responseString else{
+                handler.responseString = "No Response recieved"
+                return handler
+            }
+            
         }
+        
+        return handler
+    }
     
     
     func getHandler(response: NSHTTPURLResponse?,result : Result<String,NSError>)->ResponseHandler
@@ -198,7 +207,7 @@ public class Networking : NSObject,Resolveable
         var handler = ResponseHandler()
         switch result {
         case .Success(let data):
-    
+            
             handler.responseString   = data
             handler.success          = true
             
@@ -226,7 +235,6 @@ public class Networking : NSObject,Resolveable
             handler.response       = SwiftyJSON.JSON(data)
             handler.responseString = String(data)
             handler.headers        = response?.allHeaderFields
-            handler.success        = true
             
         case .Failure(let error):
             handler.message = "Request failed with error: \(error)"
@@ -289,7 +297,7 @@ extension Networking
     {
         return fireAs(.DELETE, url: url, type: type, parameters: parameters,completion: completion)
     }
-
+    
     public func DOWNLOAD(image:String,completion:(response: ResponseHandler) -> Void)
     {
         let downloader = ImageDownloader()

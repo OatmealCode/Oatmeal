@@ -16,6 +16,11 @@ public enum SortDirection{
     case Dscending
 }
 
+public enum Database{
+    case Public
+    case Private
+}
+
 public class CloudStorage : Storageable
 {
     public static var entityName : String? = "CloudStorage"
@@ -23,6 +28,7 @@ public class CloudStorage : Storageable
     private var cloud               : CKContainer
     private var publicAccess        : CKDatabase
     private var privateAccess       : CKDatabase
+    public var database : CKDatabase
     
     var zone : CKRecordZoneID?
     
@@ -39,6 +45,7 @@ public class CloudStorage : Storageable
         cloud         = CKContainer.defaultContainer()
         publicAccess  = cloud.publicCloudDatabase
         privateAccess = cloud.privateCloudDatabase
+        database      = privateAccess
     }
     
     
@@ -46,6 +53,18 @@ public class CloudStorage : Storageable
     {
         self.zone = zone
         return self
+    }
+    
+    public func setDB(db:Database)
+    {
+        if(db == .Public)
+        {
+            self.database = publicAccess
+        }
+        else if (db == .Private)
+        {
+            self.database = privateAccess
+        }
     }
     
     public func orderBy(key:String, direction:SortDirection)->CloudStorage
@@ -71,7 +90,7 @@ public class CloudStorage : Storageable
             id = CKRecordID(recordName: key)
         }
         
-        privateAccess.deleteRecordWithID(id, completionHandler: {
+        database.deleteRecordWithID(id, completionHandler: {
             (recordID, error) in
          
             if let c = completion
@@ -87,17 +106,72 @@ public class CloudStorage : Storageable
        })
     }
     
-    public func get<T:SerializebleObject>(type:String,completion:(response: [T?]) -> Void)
+    public func First<T:SerializebleObject>(condition: (object : T) -> Bool,completion:(response: T?) -> Void)
+    {
+        Where(condition)
+        {
+            (response : [T?]) in
+            
+            if let first = response.first
+            {
+                completion(response: first)
+            }
+            completion(response:nil)
+        }
+    }
+
+    
+    public func Where<T:SerializebleObject>(condition: (object : T) -> Bool,completion:(response: [T?]) -> Void)
+    {
+        get()
+        {
+            (response : [T?]) in
+            
+            var collection = [T]()
+            
+            for object in response
+            {
+                if let model = object
+                {
+                    if condition(object: model)
+                    {
+                        collection.append(model)
+                    }
+                }
+            }
+            completion(response: collection)
+        }
+    }
+    
+    public func get<T:SerializebleObject>(var specifiedName : String? = nil,completion:(response: [T?]) -> Void)
     {
         let predicate = NSPredicate(value: true)
-        let query     = CKQuery(recordType: type, predicate: predicate)
+        var name      = ""
+        
+        if let n = specifiedName
+        {
+            name = n
+        }
+        else
+        {
+            if let entityName = T.entityName
+            {
+                name = entityName
+            }
+            else
+            {
+                name = Oats().getDynamicName(String(T))
+            }
+        }
+        
+        let query     = CKQuery(recordType: name, predicate: predicate)
         
         if let sort = self.sort
         {
             query.sortDescriptors = sort
         }
         
-        privateAccess.performQuery(query, inZoneWithID: zone)
+        database.performQuery(query, inZoneWithID: zone)
         {
               (records, error) in
             
@@ -223,6 +297,13 @@ public class CloudStorage : Storageable
         
         return CKRecord(recordType: type,recordID:id)
     }
+    
+    
+    
+     public func update(value: SerializebleObject,key:String, completion: completionHandler?)
+    {
+        
+    }
 
     public func set(value: SerializebleObject,key:String, completion: completionHandler?)
     {
@@ -235,10 +316,11 @@ public class CloudStorage : Storageable
             //We found a relationship
             if let serializebleObject = v.value as? SerializebleObject
             {
-                 let relatedRecord = recordFrom(serializebleObject, key: serializebleObject.getName())
+                 let name = serializebleObject.getName()
+                 let relatedRecord = recordFrom(serializebleObject, key: name)
                  let reference     = CKReference(record: relatedRecord, action: CKReferenceAction.DeleteSelf)
-                 record.setValue(reference, forKey: k)
-                 relations[k] = serializebleObject
+                 record.setValue(reference, forKey: name)
+                 relations[name] = serializebleObject
             }
             else if let object = v.value as? AnyObject
             {
@@ -246,12 +328,22 @@ public class CloudStorage : Storageable
             }
         }
         
-        publicAccess.saveRecord(record, completionHandler: { (record, error) in
+        database.saveRecord(record, completionHandler: { (record, error) in
             
             if let c = completion
             {
                 var handler     = ResponseHandler()
                 handler.error   = error
+                
+                if error?.code == 11
+                {
+                    let saveRecordsOperation = CKModifyRecordsOperation()
+                    saveRecordsOperation.recordsToSave = [record!]
+                    saveRecordsOperation.savePolicy = .IfServerRecordUnchanged
+                    
+                    self.database.addOperation(saveRecordsOperation)
+                    
+                }
                 handler.success = (handler.error != nil)
                 c(response: handler)
             }

@@ -138,6 +138,7 @@
 		DE39224AA0AD1DEF14BC7CE35AE0E914 /* ResolveableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD653D798D9FE991F090FC292B8BF42 /* ResolveableEntity.swift */; };
 		E0210F6D16F33C983DF9C4EB4E9567D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B5DA16E78998F27DD594D2C481E751 /* Foundation.framework */; };
 		E04430A918C0B77FB7A0C9485FD2B25B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CD3A4C5D300975126B2B50B369FE83 /* Event.swift */; };
+		E72709EA1CA594AE00C6CE00 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72709E91CA594AE00C6CE00 /* FileStorage.swift */; };
 		E7C1C7C11C54313400CAE6D2 /* Storageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1C7C01C54313400CAE6D2 /* Storageable.swift */; };
 		E7C1C7C41C54319200CAE6D2 /* CloudStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1C7C31C54319200CAE6D2 /* CloudStorage.swift */; };
 		E7C1C7C61C54455900CAE6D2 /* ResolveableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1C7C51C54455900CAE6D2 /* ResolveableRecord.swift */; };
@@ -435,6 +436,7 @@
 		DF164ECA1488BF4861AFCBF49B1FE31B /* AlamofireImage.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AlamofireImage.xcconfig; sourceTree = "<group>"; };
 		E27168313E870D31224613267845E6B2 /* Pods-Oatmeal_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Oatmeal_Example.modulemap"; sourceTree = "<group>"; };
 		E2F0B8E3DF43DFF06B1D9C67D19E083C /* MemoryCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MemoryCache.swift; sourceTree = "<group>"; };
+		E72709E91CA594AE00C6CE00 /* FileStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
 		E73971780D1735810EC4FE378E38E2B9 /* Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Source/Error.swift; sourceTree = "<group>"; };
 		E7C1C7C01C54313400CAE6D2 /* Storageable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storageable.swift; sourceTree = "<group>"; };
 		E7C1C7C31C54319200CAE6D2 /* CloudStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudStorage.swift; sourceTree = "<group>"; };
@@ -952,6 +954,7 @@
 			children = (
 				E7C1C7C31C54319200CAE6D2 /* CloudStorage.swift */,
 				E7C1C7C51C54455900CAE6D2 /* ResolveableRecord.swift */,
+				E72709E91CA594AE00C6CE00 /* FileStorage.swift */,
 			);
 			name = Filesystem;
 			sourceTree = "<group>";
@@ -1290,6 +1293,7 @@
 				7A1068E0CAEFF21CE969E65852CE584B /* Configuration.swift in Sources */,
 				EBCE530986B776B91347C6A6E402BCC4 /* Container.swift in Sources */,
 				7C3976BE61C35AB19DCB209419112E90 /* ContainerException.swift in Sources */,
+				E72709EA1CA594AE00C6CE00 /* FileStorage.swift in Sources */,
 				9EAB134FADC13299BEDD01B09A42749D /* ContainerOperators.swift in Sources */,
 				8B87A08C711443B57DD75268C6178C69 /* Controller.swift in Sources */,
 				E7C1C7C11C54313400CAE6D2 /* Storageable.swift in Sources */,

@@ -10,6 +10,7 @@
 		14A098B2112B5222B7097D93 /* Pods_Oatmeal_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B4B2729694A9353B38C235C /* Pods_Oatmeal_Example.framework */; };
 		2A362C41A9050DC487EE23C3 /* Pods_Oatmeal_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C100D69567FBF1F422C8A218 /* Pods_Oatmeal_Tests.framework */; };
 		E730C4801C3B13A600F4BBA9 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E730C47F1C3B13A600F4BBA9 /* Person.swift */; };
+		E74B12771CA4367B003A10B5 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74B12761CA4367B003A10B5 /* CloudKit.framework */; };
 		E78A00A21BAD392C00D54CB2 /* App.txt in Resources */ = {isa = PBXBuildFile; fileRef = E78A00981BAD392C00D54CB2 /* App.txt */; };
 		E78A00A31BAD392C00D54CB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A00991BAD392C00D54CB2 /* AppDelegate.swift */; };
 		E78A00A71BAD392C00D54CB2 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = E78A009F1BAD392C00D54CB2 /* Settings.plist */; };
@@ -22,7 +23,6 @@
 		E78A00BB1BAD396000D54CB2 /* Github.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A00B91BAD396000D54CB2 /* Github.swift */; };
 		E78A00BC1BAD396000D54CB2 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A00BA1BAD396000D54CB2 /* Owner.swift */; };
 		E78A00BE1BAD40B800D54CB2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E78A00BD1BAD40B800D54CB2 /* Images.xcassets */; };
-		E7C1C7CB1C5454CC00CAE6D2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7C1C7CA1C5454CC00CAE6D2 /* CloudKit.framework */; };
 		E7C6DCB11C3FA05D000D5162 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C6DCB01C3FA05D000D5162 /* Song.swift */; };
 		E7C6DCB31C3FA23D000D5162 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C6DCB21C3FA23D000D5162 /* Album.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +49,7 @@
 		9B4B2729694A9353B38C235C /* Pods_Oatmeal_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Oatmeal_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C100D69567FBF1F422C8A218 /* Pods_Oatmeal_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Oatmeal_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E730C47F1C3B13A600F4BBA9 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		E74B12761CA4367B003A10B5 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		E78A00981BAD392C00D54CB2 /* App.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = App.txt; sourceTree = "<group>"; };
 		E78A00991BAD392C00D54CB2 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E78A009D1BAD392C00D54CB2 /* Framework.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Framework.playground; sourceTree = "<group>"; };
@@ -64,7 +65,6 @@
 		E78A00BA1BAD396000D54CB2 /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Owner.swift; path = Models/Owner.swift; sourceTree = "<group>"; };
 		E78A00BD1BAD40B800D54CB2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E7C1C7C91C5453F900CAE6D2 /* Oatmeal_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Oatmeal_Example.entitlements; sourceTree = "<group>"; };
-		E7C1C7CA1C5454CC00CAE6D2 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		E7C6DCB01C3FA05D000D5162 /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		E7C6DCB21C3FA23D000D5162 /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		F2AD7F2145C2D4994A2C6DFD /* Oatmeal.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Oatmeal.podspec; path = ../Oatmeal.podspec; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14A098B2112B5222B7097D93 /* Pods_Oatmeal_Example.framework in Frameworks */,
-				E7C1C7CB1C5454CC00CAE6D2 /* CloudKit.framework in Frameworks */,
+				E74B12771CA4367B003A10B5 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,7 +105,6 @@
 		571923F5A24AB593F3287B61 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E7C1C7CA1C5454CC00CAE6D2 /* CloudKit.framework */,
 				9B4B2729694A9353B38C235C /* Pods_Oatmeal_Example.framework */,
 				C100D69567FBF1F422C8A218 /* Pods_Oatmeal_Tests.framework */,
 			);
@@ -116,6 +115,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				E74B12761CA4367B003A10B5 /* CloudKit.framework */,
 				E7C1C7C91C5453F900CAE6D2 /* Oatmeal_Example.entitlements */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for Oatmeal */,

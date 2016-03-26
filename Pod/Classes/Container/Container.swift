@@ -184,7 +184,7 @@ public class Container : Oatmeal
     {
         let name = singleton.getName()
         
-        for(var i = 0; i <= singletons.count; i++)
+        for i in 0...singletons.count - 1
         {
             if(singletons[i].getName() == name)
             {
