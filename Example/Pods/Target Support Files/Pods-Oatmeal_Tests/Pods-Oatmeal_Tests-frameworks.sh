@@ -16,7 +16,7 @@ install_framework()
     local source="$1"
   fi
 
-  local destination="${CONFIGURATION_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
+  local destination="${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
 
   if [ -L "${source}" ]; then
       echo "Symlinked..."
@@ -84,16 +84,18 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-Oatmeal_Tests/Alamofire.framework"
-  install_framework "Pods-Oatmeal_Tests/AlamofireImage.framework"
-  install_framework "Pods-Oatmeal_Tests/Carlos.framework"
-  install_framework "Pods-Oatmeal_Tests/Oatmeal.framework"
-  install_framework "Pods-Oatmeal_Tests/SwiftyJSON.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AlamofireImage/AlamofireImage.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Carlos/Carlos.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Oatmeal/Oatmeal.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PiedPiper/PiedPiper.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-Oatmeal_Tests/Alamofire.framework"
-  install_framework "Pods-Oatmeal_Tests/AlamofireImage.framework"
-  install_framework "Pods-Oatmeal_Tests/Carlos.framework"
-  install_framework "Pods-Oatmeal_Tests/Oatmeal.framework"
-  install_framework "Pods-Oatmeal_Tests/SwiftyJSON.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/AlamofireImage/AlamofireImage.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Carlos/Carlos.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Oatmeal/Oatmeal.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PiedPiper/PiedPiper.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
 fi

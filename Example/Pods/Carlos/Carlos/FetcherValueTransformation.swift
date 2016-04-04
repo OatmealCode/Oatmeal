@@ -1,4 +1,5 @@
 import Foundation
+import PiedPiper
 
 extension Fetcher {
   
@@ -28,6 +29,7 @@ extension Fetcher {
    
    - returns: A new fetcher result of the transformation of the original fetcher
    */
+  @available(*, deprecated=0.7)
   public func transformValues<A>(transformerClosure: OutputType -> Future<A>) -> BasicFetcher<KeyType, A> {
     return self.transformValues(wrapClosureIntoOneWayTransformer(transformerClosure))
   }
@@ -103,6 +105,7 @@ public func transformValues<A: Fetcher, B>(fetcher: A, transformerClosure: A.Out
  
  - returns: A new fetcher result of the transformation of the original fetcher
  */
+@available(*, deprecated=0.7)
 public func =>><A, B: OneWayTransformer>(fetchClosure: (key: A) -> Future<B.TypeIn>, transformer: B) -> BasicFetcher<A, B.TypeOut> {
   return wrapClosureIntoFetcher(fetchClosure).transformValues(transformer)
 }
@@ -131,6 +134,7 @@ public func =>><A: Fetcher, B: OneWayTransformer where A.OutputType == B.TypeIn>
  
  - returns: A new fetcher result of the transformation of the original fetcher
  */
+@available(*, deprecated=0.7)
 public func =>><A, B, C>(fetchClosure: (key: A) -> Future<B>, transformerClosure: B -> Future<C>) -> BasicFetcher<A, C> {
   return wrapClosureIntoFetcher(fetchClosure).transformValues(wrapClosureIntoOneWayTransformer(transformerClosure))
 }
@@ -145,6 +149,7 @@ public func =>><A, B, C>(fetchClosure: (key: A) -> Future<B>, transformerClosure
  
  - returns: A new fetcher result of the transformation of the original fetcher
  */
+@available(*, deprecated=0.7)
 public func =>><A: Fetcher, B>(fetcher: A, transformerClosure: A.OutputType -> Future<B>) -> BasicFetcher<A.KeyType, B> {
   return fetcher.transformValues(wrapClosureIntoOneWayTransformer(transformerClosure))
 }

@@ -29,6 +29,12 @@ class ViewsController: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let github = Github()
+        github.name = "Oatmeal"
+        github.watchers_count = NSNumber(int : 20)
+        let fileStorage = FileStorage()
+
+        fileStorage.set(github)
         
         self.setEvents()
         self.checkDependencies()
@@ -88,7 +94,7 @@ class ViewsController: UIViewController
             }
         })
         
-        http.GET("https://api.github.com/repos/mikenolimits/Oatmeal", completion:  {
+        http.GET("https://api.github.com/repos/OatmealCode/Oatmeal", completion:  {
             (response:Github,success) in
             
             if let events : Events = ~Oats()

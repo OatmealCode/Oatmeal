@@ -1,4 +1,5 @@
 import Foundation
+import PiedPiper
 
 public enum NetworkFetcherError: ErrorType {
   /// Used when the status code of the network response is not included in the range 200..<300
@@ -111,6 +112,10 @@ public class NetworkFetcher: Fetcher {
       }
       .onFailure { _ in
         Logger.log("Failed fetching \(key) from the network fetcher", .Error)
+        self.removePendingRequests(result)
+      }
+      .onCancel {
+        Logger.log("Canceled request for \(key) on the network fetcher", .Info)
         self.removePendingRequests(result)
       }
     

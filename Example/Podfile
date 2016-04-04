@@ -1,7 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
-target 'Oatmeal_Example', :exclusive => true do
+target 'Oatmeal_Example' do
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'Carlos'
@@ -9,6 +9,6 @@ target 'Oatmeal_Example', :exclusive => true do
   pod "Oatmeal", :path => "../"
 end
 
-target 'Oatmeal_Tests', :exclusive => true do
+target 'Oatmeal_Tests' do
   pod "Oatmeal", :path => "../"
 end

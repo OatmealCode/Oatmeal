@@ -1,4 +1,5 @@
 import Foundation
+import PiedPiper
 
 infix operator <?> { associativity right }
 
@@ -36,6 +37,7 @@ private func conditionedClosure<A, B>(closure: A -> Future<B>, condition: A -> F
         }
       }
       .onFailure(request.fail)
+      .onCancel(request.cancel)
     
     return request.future
   }
@@ -92,7 +94,8 @@ Wraps a CacheLevel with a boolean condition on the key that controls when a get 
 - parameter fetchClosure: The fetch closure to decorate
 
 - returns: A new BasicCache that will check for the condition before every get is dispatched to the decorated cache level
-*/
+ */
+@available(*, deprecated=0.7)
 public func <?><A, B>(condition: A -> Future<Bool>, fetchClosure: (key: A) -> Future<B>) -> BasicCache<A, B> {
   return wrapClosureIntoFetcher(fetchClosure).conditioned(condition)
 }

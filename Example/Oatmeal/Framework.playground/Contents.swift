@@ -269,7 +269,7 @@ class game : SerializebleObject
     var man : hangman?
     var a : [String]?
     var b : [String] = [String]()
-    var num : NSNumber?
+    var num : [NSNumber] = [NSNumber]()
     
     required init()
     {
@@ -280,16 +280,18 @@ class game : SerializebleObject
         fatalError("init(coder:) has not been implemented")
     }
 }
-let num = NSNumber(integer: 10)
+let num = 10
+num.dynamicType
+"".dynamicType
 let g = game()
-g.setValue(num, forKeyPath: "num")
-print(g.num)
 
 let p = toProps(g)
 let aArray = p["a"]?.mirror
 let bArray = p["b"]?.mirror
+let n    = p["num"]?.mirror
 print(aArray?.subjectType)
 print(bArray?.subjectType)
+print(n?.subjectType)
 print(p["a"]?.type)
 print(p["b"]?.type)
 

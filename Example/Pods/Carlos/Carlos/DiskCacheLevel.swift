@@ -1,4 +1,5 @@
 import Foundation
+import PiedPiper
 
 /// This class is a disk cache level. It has a configurable total size that defaults to 100 MB.
 public class DiskCacheLevel<K: StringConvertible, T: NSCoding>: CacheLevel {
@@ -103,7 +104,7 @@ public class DiskCacheLevel<K: StringConvertible, T: NSCoding>: CacheLevel {
   */
   public func clear() {
     cacheQueue.async { Void -> Void in
-      for filePath in self.itemsInDirectory(self.path) {
+      self.itemsInDirectory(self.path).forEach { filePath in
         _ = try? self.fileManager.removeItemAtPath(filePath)
       }
       self.calculateSize()
@@ -115,17 +116,6 @@ public class DiskCacheLevel<K: StringConvertible, T: NSCoding>: CacheLevel {
   private func removeData(key: K) {
     cacheQueue.async {
       self.removeFileAtPath(self.pathForKey(key))
-    }
-  }
-  
-  private func updateAccessDate(@autoclosure(escaping) getData: () -> T?, key: K) {
-    cacheQueue.async { Void -> Void in
-      let path = self.pathForKey(key)
-      if !self.updateDiskAccessDateAtPath(path) && !self.fileManager.fileExistsAtPath(path) {
-        if let data = getData() {
-          self.setDataSync(data, key: key)
-        }
-      }
     }
   }
   
@@ -164,13 +154,20 @@ public class DiskCacheLevel<K: StringConvertible, T: NSCoding>: CacheLevel {
   private func setDataSync(data: T, key: K) {
     let path = pathForKey(key)
     let previousSize = sizeForFileAtPath(path)
-    if !NSKeyedArchiver.archiveRootObject(data, toFile: path) {
+    
+    if NSKeyedArchiver.archiveRootObject(data, toFile: path) {
+      updateDiskAccessDateAtPath(path)
+      
+      let newSize = sizeForFileAtPath(path)
+      if newSize > previousSize {
+        size += newSize - previousSize
+        controlCapacity()
+      } else {
+        size -= previousSize - newSize
+      }
+    } else {
       Logger.log("Failed to write key \(key.toString()) on the disk cache", .Error)
     }
-    
-    size += max(0, sizeForFileAtPath(path) - previousSize)
-    
-    controlCapacity()
   }
   
   private func updateDiskAccessDateAtPath(path: String) -> Bool {

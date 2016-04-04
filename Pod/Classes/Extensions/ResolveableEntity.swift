@@ -71,11 +71,11 @@ public extension Resolveable
         switch(value.value)
         {
          case _ as Int:
-            c++
+            c += 1
          case _ as Double:
-            c++
+            c += 1
          case _ as Float:
-            c++
+            c += 1
          case _ as Int64:
             c += 8
          case _ as Int32:
@@ -85,7 +85,7 @@ public extension Resolveable
          case let nsString as NSString:
             c += nsString.length
          case  _ as String:
-            c++
+            c += 1
          default:
              break
         }
@@ -93,7 +93,7 @@ public extension Resolveable
         return c
     }
     
-    private func updateJson(var jObject: JSON, key:String, prop : Property) -> JSON
+    private func updateJson(inout jObject: JSON, key:String, prop : Property) -> JSON
     {
         let arrayExpression      = "\\[(.*?)]"
         let dictionaryExpression = "\\[(.*?):(.*?)]"
@@ -148,7 +148,7 @@ public extension Resolveable
             }
             else
             {
-                jObject     =   updateJson(jObject, key: key, prop: prop)
+                jObject     =   updateJson(&jObject, key: key, prop: prop)
             }
         }
         
@@ -201,8 +201,14 @@ public extension Resolveable
     }
 
     
-    public func dependencies(var props : properties = properties()) -> properties
+    public func dependencies(props : properties?) -> properties
     {
+        var dependentProps = properties()
+        if let givenProps = props
+        {
+            dependentProps = givenProps
+        }
+        
         var entities = properties()
         
         if let reflector  : Reflections = ~Oats()
@@ -210,13 +216,13 @@ public extension Resolveable
         
         let name   = getName()
         
-        if props.count <= 0
+        if dependentProps.count <= 0
         {
-            props = self.toProps()
+            dependentProps = self.toProps()
             reflector[name] = props
         }
         
-        for(_,prop) in props
+        for(_,prop) in dependentProps
         {
         
             let value : DidResolve = self.resolvableFilter(prop)

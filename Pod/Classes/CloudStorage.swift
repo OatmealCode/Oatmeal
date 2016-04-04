@@ -143,7 +143,7 @@ public class CloudStorage : Storageable
         }
     }
     
-    public func get<T:SerializebleObject>(var specifiedName : String? = nil,completion:(response: [T?]) -> Void)
+    public func get<T:SerializebleObject>(specifiedName : String? = nil,completion:(response: [T?]) -> Void)
     {
         let predicate = NSPredicate(value: true)
         var name      = ""
@@ -271,13 +271,15 @@ public class CloudStorage : Storageable
         return prop
     }
 
-    public func toCompatibleTypes(var props : properties) -> properties
+    public func toCompatibleTypes(props : properties) -> properties
     {
+        var properties  = props
+        
         for (key,prop) in props
         {
-            props[key] = castToCK(prop)
+            properties[key] = castToCK(prop)
         }
-        return props
+        return properties
     }
     
     func recordFrom(type: SerializebleObject, key:String) -> CKRecord

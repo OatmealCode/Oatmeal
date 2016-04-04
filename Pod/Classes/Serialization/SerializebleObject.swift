@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class SerializebleObject: NSObject,Resolveable
+public class SerializebleObject: NSObject,Resolveable, DidSerialize
 {
     //Required Init
     public static var entityName : String?
@@ -21,6 +21,11 @@ public class SerializebleObject: NSObject,Resolveable
     public func bindsToContainer()->Bool
     {
         return false
+    }
+    
+    public func didSerialize()
+    {
+        
     }
     /*
     required public init?(coder aDecoder: NSCoder)

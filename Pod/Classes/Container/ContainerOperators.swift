@@ -78,8 +78,10 @@ public func ~><T: SerializebleObject>(inout left: T, json: String)->T?{
     return nil
 }
 
-public func ~><T: SerializebleObject>(var left: T, json: JSON)->T?{
+public func ~><T: SerializebleObject>(inout left: T, json: JSON)->T?
+{
     //Models use the same function signature as Resolveables, which can cause confusion when attempting to toss them into the IoC. We fix this by using the protocol method
+    
     if left.bindsToContainer()
     {
         left ~> "\(left.dynamicType)"

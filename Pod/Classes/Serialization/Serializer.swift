@@ -5,10 +5,8 @@ public class Serializer : NSObject,Resolveable
 {
     public static var entityName :String? = "serializer"
     
-    public typealias params         = [String:AnyObject]
-    public typealias j              = SwiftyJSON.JSON
-    
-    public var reflectedProperties : properties = properties()
+    public typealias params                     = [String:AnyObject]
+    public typealias j                          = SwiftyJSON.JSON
     public var castable                         = [Any.Type?]()
     
     static var arrayMap : [String:Any.Type?]  =
@@ -19,6 +17,7 @@ public class Serializer : NSObject,Resolveable
         "Optional<Array<Double>>" : [Double]?.self,
         "Optional<Array<Float>>" : [Float]?.self,
         "Array<String>"   : [String].self,
+        "Array<NSNumber>" : [NSNumber].self,
         "Array<NSString>" : [NSString].self,
         "Array<Int>"      : [Int].self,
         "Array<Double>"   : [Double].self,
@@ -46,6 +45,7 @@ public class Serializer : NSObject,Resolveable
     [
         "String" : String.self,
         "Int"    : Int.self,
+        "__NSCFNumber" : NSNumber.self,
         "Double" : Double.self,
         "Float"  : Float.self,
         "CGFloat": CGFloat.self,
@@ -99,12 +99,32 @@ public class Serializer : NSObject,Resolveable
         
         return nil
     }
+    
+    func readVariations(key:String, JSON : j)  -> j
+    {
+        let variations = [key,key.capitalizedString,key.lowercaseString,key.snakeCase,key.camelCase,key.kebabCase]
+        
+        var jV : j = j("")
+        
+        for variation in variations
+        {
+            var attempt     = JSON[variation]
+            jV = attempt
+            
+            if attempt.stringValue != ""
+            {
+                break
+            }
+        }
+        return jV
+    }
+    
     /*
     
     */
     public func parse(model: SerializebleObject, JSON : j) -> SerializebleObject?
     {
-        reflectedProperties = model.toProps()
+        var reflectedProperties = model.toProps()
         if(recursiveCalls <= recursionLimit)
         {
             //Inject any depedencies from the container including submodels.
@@ -114,9 +134,10 @@ public class Serializer : NSObject,Resolveable
                 if let resolved = ~key as? NSObject
                 {
                     //Now lets check if the dependency we pulled is actually a model too!
+                    
                     if let autoresolver = resolved as? SerializebleObject
                     {
-                        recursiveCalls++
+                        recursiveCalls += 1
                         let replaced = parse(autoresolver, JSON: JSON[prop.label])
                         model.setValue(replaced, forKey: prop.label)
                     }
@@ -128,12 +149,12 @@ public class Serializer : NSObject,Resolveable
                     reflectedProperties.removeValueForKey(prop.label)
                 }
             }
-            //Set properties on everything else
             
+            //Set properties on everything else
             for (key,prop) in reflectedProperties
             {
+                let jValue = readVariations(key, JSON: JSON)
                 
-                let jValue  = JSON[key]
                 cast(jValue, prop: prop)
                 if let type = castable.find({prop.type == $0})
                 {
@@ -143,7 +164,7 @@ public class Serializer : NSObject,Resolveable
                     {
                     case .Number:
                         
-                        let assertMirror = Mirror(reflecting: jValue)
+                        let assertMirror = prop.mirror
                         
                         if(assertMirror.displayStyle != .Optional || typeAsString.containsString("NSNumber"))
                         {
@@ -182,6 +203,7 @@ public class Serializer : NSObject,Resolveable
                 }
             }
         }
+        model.didSerialize()
         return model
     }
     
@@ -340,6 +362,11 @@ public class Serializer : NSObject,Resolveable
         {
             castable.append(Int?.self)
             castable.append(Int.self)
+        }
+        if let _ = uncasted.number
+        {
+            castable.append(NSNumber.self)
+            castable.append(NSNumber?.self)
         }
         return castable
     }

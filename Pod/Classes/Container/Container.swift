@@ -67,7 +67,7 @@ public class Container : Oatmeal
             
             return nil
         }
-        O.resolutionAttempts++
+        O.resolutionAttempts += 1
         
         guard let name = O.entityName else
         { 
@@ -235,7 +235,7 @@ public class Container : Oatmeal
     
     public func injectDependencies(obj: Autoresolves)
     {
-        for (key,prop) in obj.dependencies()
+        for (key,prop) in obj.dependencies(nil)
         {
             if let autoresolvable = obj as? Autoresolveable, resolved = ~key as? NSObject
             {

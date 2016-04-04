@@ -1,4 +1,5 @@
 import Foundation
+import PiedPiper
 
 /*
   Warning! this class contains a workaround in order to have effective generic NSOperations in Swift
@@ -32,17 +33,23 @@ public class DeferredResultOperation<C: CacheLevel>: GenericOperation {
     state = .Executing
     
     cache.get(key)
-      .onSuccess({ result in
+      .onSuccess { result in
         GCD.main {
           self.decoy.succeed(result)
         }
         self.state = .Finished
-      })
-      .onFailure({ error in
+      }
+      .onFailure { error in
         GCD.main {
           self.decoy.fail(error)
         }
         self.state = .Finished
-      })
-  }
+      }
+      .onCancel {
+        GCD.main {
+          self.decoy.cancel()
+        }
+        self.state = .Finished
+      }
+    }
 }

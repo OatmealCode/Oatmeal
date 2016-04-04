@@ -27,7 +27,7 @@ public class Event {
     public func handle()
     {    
         lastFiredAt = Int(NSDate().timeIntervalSince1970)
-        fired++
+        fired += 1
         callback!(event: self)
     }
     

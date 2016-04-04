@@ -17,7 +17,7 @@ import SwiftyJSON
     
      static var entityName: String? { get set }
      init()
-     func dependencies(var properties : properties) -> properties
+     func dependencies(properties : properties?) -> properties
      func toProps(fromJson : Bool) -> properties
      func getName() -> String
      func toJSON() -> JSON

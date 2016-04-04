@@ -1,6 +1,6 @@
 // ImageCache.swift
 //
-// Copyright (c) 2015 Alamofire Software Foundation (http://alamofire.org/)
+// Copyright (c) 2015-2016 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -132,7 +132,7 @@ public class AutoPurgingImageCache: ImageRequestCache {
 
         - returns: The new `AutoPurgingImageCache` instance.
     */
-    public init(memoryCapacity: UInt64 = 100 * 1024 * 1024, preferredMemoryUsageAfterPurge: UInt64 = 60 * 1024 * 1024) {
+    public init(memoryCapacity: UInt64 = 100_000_000, preferredMemoryUsageAfterPurge: UInt64 = 60_000_000) {
         self.memoryCapacity = memoryCapacity
         self.preferredMemoryUsageAfterPurge = preferredMemoryUsageAfterPurge
 
@@ -149,10 +149,10 @@ public class AutoPurgingImageCache: ImageRequestCache {
             return dispatch_queue_create(name, DISPATCH_QUEUE_CONCURRENT)
         }()
 
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
             NSNotificationCenter.defaultCenter().addObserver(
                 self,
-                selector: "removeAllImages",
+                selector: #selector(AutoPurgingImageCache.removeAllImages),
                 name: UIApplicationDidReceiveMemoryWarningNotification,
                 object: nil
             )

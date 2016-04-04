@@ -62,13 +62,14 @@ public class Reflections : Resolveable
             .replace("-", withString: "_")
     }
     
-    public func set(key:String, var value : properties)
+    public func set(key:String, value : properties)
     {
+        var props                   = value
         let resolutionAttempts      = Property()
         resolutionAttempts.value    = 0
         resolutionAttempts.label    = "resolutionAttempts"
-        value["resolutionAttempts"] = resolutionAttempts
-        mirrors[key] = value
+        props["resolutionAttempts"] = resolutionAttempts
+        mirrors[key] = props
     }
     
     public func reflect(member:Resolveable) -> properties

@@ -31,6 +31,7 @@ public class Networking : NSObject,Resolveable
     public var headers : [String:String]
     
     var pendingRequest : Bool = false
+    var currentRoute : Route?
     
     public var requestCap : Int      = 20
     public var currentRequests : Int = 0
@@ -114,9 +115,10 @@ public class Networking : NSObject,Resolveable
     }
     
     
-    public func fire(var route : Route, completion:(response: ResponseHandler) -> Void)
+    public func fire(route : Route, completion:(response: ResponseHandler) -> Void)
     {
         //Networking is meant as a one track lane, but if the developer puts two cars in the lane, we'll create a fork in the road to let the other in
+        var currentRoute = route
         if(currentRequests >= requestCap)
         {
             NSThread.sleepForTimeInterval(1)
@@ -125,17 +127,23 @@ public class Networking : NSObject,Resolveable
         {
             if let networking : Networking = ~Oats()
             {
-                self.currentRequests++
-                networking.fire(route, completion: completion)
+                self.currentRequests += 1
+                networking.fire(currentRoute, completion: completion)
             }
         }
         else
         {
+            self.currentRoute = route
+            if let events : Events = ~Oats()
+            {
+                events.fire("NetworkingRequest", payload: ["networking" : self])
+                
+            }
             //First we create the context of the request
             //Allowing for the developer to have full control over the request
             self.pendingRequest = true
             
-            if let config  = route.customConfiguration
+            if let config  = currentRoute.customConfiguration
             {
                 manager = Alamofire.Manager(configuration: config, serverTrustPolicyManager: nil)
             }
@@ -145,12 +153,12 @@ public class Networking : NSObject,Resolveable
                 config.timeoutIntervalForResource = 600
                 config.HTTPAdditionalHeaders      = Manager.defaultHTTPHeaders
                 
-                manager = Alamofire.Manager(configuration: config, serverTrustPolicyManager: route.sslPolicy)
+                manager = Alamofire.Manager(configuration: config, serverTrustPolicyManager: currentRoute.sslPolicy)
             }
             
             if(headers.count >= 1)
             {
-                route.headers = headers
+                currentRoute.headers = headers
             }
             
             switch(route.type)
@@ -161,7 +169,7 @@ public class Networking : NSObject,Resolveable
                     var handler = self.getHandler(result.response,result: result.result)
                     handler     = self.adjustToExpectation(route, handler: handler)
                     self.pendingRequest = false
-                    self.currentRequests--
+                    self.currentRequests -= 1
                     completion(response: handler)
                 }
             case .ShouldSendJsonAndReturnString,.ShouldSendUrlAndReturnString:
@@ -169,36 +177,37 @@ public class Networking : NSObject,Resolveable
                     var handler = self.getHandler(result.response,result: result.result)
                     handler     = self.adjustToExpectation(route, handler: handler)
                     self.pendingRequest = false
-                    self.currentRequests--
+                    self.currentRequests -= 1
                     completion(response: handler)
                 }
             }
         }
     }
     
-    func adjustToExpectation(route:Route, var handler:ResponseHandler)->ResponseHandler
+    func adjustToExpectation(route:Route, handler:ResponseHandler)->ResponseHandler
     {
+        var currentHandler = handler
         switch(route.type)
         {
         case .ShouldSendUrlAndReturnJson, .ShouldSendJsonAndReturnIt:
             //Oh look here, we have no json, lets fix that.
-            guard let _ = handler.response else{
+            guard let _ = currentHandler.response else{
                 let msg   = ["data" : ["message" : "No response recieved"]]
                 let json : JSON = JSON(msg)
-                handler.response = json
-                return handler
+                currentHandler.response = json
+                return currentHandler
             }
             
         case .ShouldSendJsonAndReturnString,.ShouldSendUrlAndReturnString:
             
-            guard let _ = handler.responseString else{
-                handler.responseString = "No Response recieved"
-                return handler
+            guard let _ = currentHandler.responseString else{
+                currentHandler.responseString = "No Response recieved"
+                return currentHandler
             }
             
         }
         
-        return handler
+        return currentHandler
     }
     
     

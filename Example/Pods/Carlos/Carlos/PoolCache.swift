@@ -1,4 +1,5 @@
 import Foundation
+import PiedPiper
 
 extension CacheLevel where KeyType: Hashable {
   
@@ -32,8 +33,8 @@ Wraps a fetcher closure with a requests pool
 - returns: A PoolCache that will pool requests coming to the closure. This means that multiple requests for the same key will be pooled and only one will be actually done (so that expensive operations like network or file system fetches will only be done once). All onSuccess and onFailure callbacks will be done on the pooled request.
 */
 @available(*, deprecated=0.5)
-public func pooled<A, B>(fetcherClosure: (key: A) -> Future<B>) -> PoolCache<BasicCache<A, B>> {
-  return wrapClosureIntoCacheLevel(fetcherClosure).pooled()
+public func pooled<A, B>(fetcherClosure: (key: A) -> Future<B>) -> PoolCache<BasicFetcher<A, B>> {
+  return wrapClosureIntoFetcher(fetcherClosure).pooled()
 }
 
 /**
@@ -79,7 +80,7 @@ public final class PoolCache<C: CacheLevel where C.KeyType: Hashable>: CacheLeve
       Logger.log("Creating a new request \(request) for key \(key)")
       
       request
-        .onCompletion { _, _ in
+        .onCompletion { _ in
           self.lock.withWriteLock {
             self.requestsPool[key] = nil
           }
