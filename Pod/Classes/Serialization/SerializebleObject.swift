@@ -8,10 +8,12 @@
 
 import Foundation
 
-public class SerializebleObject: NSObject,Resolveable, DidSerialize
+public class SerializebleObject: NSObject,Resolveable, Serializes
 {
     //Required Init
     public static var entityName : String?
+    
+    public var serializationKey = String(NSDate().timeIntervalSince1970)
     
     public required override init()
     {

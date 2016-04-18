@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 public class FileStorage : Storageable{
     
@@ -14,52 +15,99 @@ public class FileStorage : Storageable{
     public static var entityName: String? = "FileStorage"
     
     var storage : NSFileManager
+    var defaultPath : String
     
     
     public required init()
     {
-        storage = NSFileManager.defaultManager()
+        storage = NSFileManager()
+        defaultPath =  String(NSTemporaryDirectory()) + "/Oatmeal/"
     }
+    
+    public func get<T:SerializebleObject>()->[T?]
+    {
+        var models = [T?]()
+        let base   = T()
+        if let res = base as? Resolveable
+        {
+        
+        let name = res.getName()
+            
+        if let paths = getPaths("\(defaultPath)/\(name)")
+        {
+            for path in paths
+            {
+                    
+               if let data  = NSData(contentsOfFile: path), model : T = ~JSON(data : data)
+               {
+                    models.append(model)
+                        
+                }
+            }
+          }
+        }
+        return models
+    }
+
     
     public func set(object : SerializebleObject) -> Bool
     {
-        let name    = object.getName()
-        let root    = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-        let folder  = "\(root)/Objects/\(name)"
-        let key     = NSDate().timeIntervalSince1970
-        var handler = ResponseHandler()
-        
-        self.createFolder(folder)
-        do{
-            let json = object.toJSON()
-            let data = try json.rawData()
+           let name    = object.getName()
             
-            self.storage.createFileAtPath("\(folder)/\(key).json", contents: data, attributes: nil)
-        }
-        catch(let error as NSError)
-        {
-            print(error.code)
-            if let log : FileLog = ~Oats()
-            {
-                log.write("Failed to set object \(name) due to : \n \(error.description)")
+           let temporaryDirectoryURL = NSTemporaryDirectory() as String
+        
+           //self.createFolder(temporaryDirectoryURL)
+            
+            do{
+                let json = object.toJSON()
+                let data = try json.rawData()
+                let root = "\(temporaryDirectoryURL)/Oatmeal/\(name)"
+                self.createFolder(NSURL(fileURLWithPath: root))
+                
+                self.storage.createFileAtPath("\(root)/\(object.serializationKey).json", contents: data, attributes: nil)
+            
             }
-            return false
-        }
+            catch(let error as NSError)
+            {
+                print(error.code)
+                if let log : FileLog = ~Oats()
+                {
+                    log.write("Failed to set object \(name) due to : \n \(error.description)")
+                }
+                return false
+            }
+        
         return true
     }
     
-    
-    public func createFolder(path:String)
+    func getPaths(path:String) -> [String]?
     {
-        let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        let documentsDirectory: AnyObject = paths[0]
-        let dataPath = documentsDirectory.stringByAppendingPathComponent(path)
+        do{
+          return try self.storage.contentsOfDirectoryAtPath(path)
+        }
+        catch
+        {
+            
+        }
+        return nil
+    }
+    
+    
+    public func createFolder(path:NSURL)
+    {
         
-       do {
-        try self.storage.createDirectoryAtPath(dataPath, withIntermediateDirectories: false, attributes: nil)
-       }
-       catch let error as NSError {
-           print(error.localizedDescription)
+        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+                                                           .UserDomainMask, true)
+        
+        var error: NSError?
+        do{
+           try self.storage.createDirectoryAtURL(path,
+                                          withIntermediateDirectories: true, 
+                                          attributes: nil)
+        }
+        catch
+        {
+            
         }
         
     }

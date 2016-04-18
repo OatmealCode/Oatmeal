@@ -34,6 +34,9 @@ class ViewsController: UIViewController
         github.watchers_count = NSNumber(int : 20)
         let fileStorage = FileStorage()
 
+        let group : Github = fileStorage.get()
+        
+        
         fileStorage.set(github)
         
         self.setEvents()

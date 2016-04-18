@@ -9,7 +9,7 @@
 import Foundation
 
 
-public protocol DidSerialize
+public protocol Serializes
 {
     func didSerialize()
 }

@@ -19,7 +19,7 @@ public extension Cacheable
             
             if let data = handler.response, model : T = ~data["object"]
             {
-                    completion(response:model)
+                completion(response:model)
             }
         })
     }
