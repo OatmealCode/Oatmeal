@@ -23,5 +23,13 @@ public extension Cacheable
             }
         })
     }
+    /**
+     - parameter value : The SerializebleObject to be cached.
+         Will cache value using its SerializationKey
+     **/
+    public func set(value : SerializebleObject)
+    {
+        self.set(value.serializationKey, value: value)
+    }
 }
 

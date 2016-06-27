@@ -1,15 +1,15 @@
 PODS:
-  - Alamofire (3.3.0)
+  - Alamofire (3.4.0)
   - AlamofireImage (2.4.0):
     - Alamofire (~> 3.3)
-  - Carlos (0.7):
-    - PiedPiper (~> 0.7)
-  - Oatmeal (0.3.1):
+  - Carlos (0.8):
+    - PiedPiper (~> 0.8)
+  - Oatmeal (0.3.3):
     - Alamofire
     - AlamofireImage
     - Carlos
     - SwiftyJSON
-  - PiedPiper (0.7)
+  - PiedPiper (0.8)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -31,11 +31,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
   AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
-  Carlos: 82eb492944be58c96455a6c55395dc725aaacd4c
-  Oatmeal: b43c73432b116c2d9fff999f0da21d2b6f327145
-  PiedPiper: c7b8faaa0b2650716d477cea1be51ee6676dacc2
+  Carlos: a81e995dae4301a461be98a7363da2f1cf83a2bf
+  Oatmeal: 9304bf1f96a255ba052e95d2d09de2f5206f6e15
+  PiedPiper: cadc2fdfedb538958f3c42feffbe6812cdb4ec86
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 PODFILE CHECKSUM: 3f8702069da5627000a812e39be4b2a8b53a3c10

@@ -75,6 +75,7 @@ public class HttpLog : NSObject,Loggable{
     
     func log(message : String, type:LogType)
     {
+        print(message)
         switch(type)
         {
          case .Success:

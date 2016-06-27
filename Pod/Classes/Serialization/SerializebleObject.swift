@@ -15,10 +15,26 @@ public class SerializebleObject: NSObject,Resolveable, Serializes
     
     public var serializationKey = String(NSDate().timeIntervalSince1970)
     
+    public var cacheBust   : NSTimeInterval   = 600.00 {
+        didSet{
+             setCacheBust()
+        }
+    }
+    
+    public var expires    : NSTimeInterval = 0
+    
     public required override init()
     {
-    
+        super.init()
+        self.expires = NSDate().dateByAddingTimeInterval(self.cacheBust).timeIntervalSinceReferenceDate
     }
+    
+    public func setCacheBust()
+    {
+        
+    }
+    
+    
     
     public func bindsToContainer()->Bool
     {

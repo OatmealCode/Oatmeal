@@ -77,6 +77,7 @@ public class Container : Oatmeal
         }
         if let _ = O.self as? Autoresolves, auto = O() as? Autoresolveable where auto.customEntityName != ""
         {
+            print(auto.customEntityName)
             return self.get(auto.customEntityName) as? O
         }
         return self.get(name) as? O

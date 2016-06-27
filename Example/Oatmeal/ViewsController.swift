@@ -29,18 +29,27 @@ class ViewsController: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let github = Github()
-        github.name = "Oatmeal"
-        github.watchers_count = NSNumber(int : 20)
-        let fileStorage = FileStorage()
 
-        let group : Github = fileStorage.get()
+        
+        let github            = Github()
+        github.name           = "Oatmeal"
+        github.watchers_count = NSNumber(int : 20)
+        let fileStorage       = FileStorage()
+
+        fileStorage.set(github)
+        
+        if let list : [Github] = fileStorage.get()
+        {
+            print(list)
+        }
+        //fileStorage.wipeCache(Github.self)
         
         
         fileStorage.set(github)
         
         self.setEvents()
         self.checkDependencies()
+        
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -97,7 +106,7 @@ class ViewsController: UIViewController
             }
         })
         
-        http.GET("https://api.github.com/repos/OatmealCode/Oatmeal", completion:  {
+        http.route(Router.GetFramework(framework: "OatmealCode/Oatmeal"), completion:  {
             (response:Github,success) in
             
             if let events : Events = ~Oats()

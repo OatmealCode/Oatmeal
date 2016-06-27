@@ -1,7 +1,9 @@
 import Foundation
 
 /// This class is a Future computation, where you can attach failure and success callbacks.
-public class Promise<T> {
+public class Promise<T>: Async {
+  public typealias Value = T
+  
   private var failureListeners: [(ErrorType) -> Void] = []
   private var successListeners: [(T) -> Void] = []
   private var cancelListeners: [Void -> Void] = []
@@ -29,24 +31,13 @@ public class Promise<T> {
   */
   public init() {}
   
-  /**
-  Initializes a new Promise and makes it immediately succeed with the given value
-  
-  - parameter value: The success value of the Promise
-  */
-  public convenience init(value: T) {
+  convenience init(_ value: T) {
     self.init()
     
     succeed(value)
   }
   
-  /**
-  Initializes a new Promise and makes it immediately succeed or fail depending on the value
-   
-  - parameter value: The success value of the Promise, if not .None
-  - parameter error: The error of the Promise, if value is .None
-  */
-  public convenience init(value: T?, error: ErrorType) {
+  convenience init(value: T?, error: ErrorType) {
     self.init()
     
     if let value = value {
@@ -56,12 +47,7 @@ public class Promise<T> {
     }
   }
   
-  /**
-  Initializes a new Promise and makes it immediately fail with the given error
-  
-  - parameter error: The error of the Promise
-  */
-  public convenience init(error: ErrorType) {
+  convenience init(_ error: ErrorType) {
     self.init()
     
     fail(error)
@@ -76,10 +62,37 @@ public class Promise<T> {
   - returns: The Promise itself
   */
   public func mimic(stamp: Future<T>) -> Promise<T> {
-    stamp
-      .onSuccess(self.succeed)
-      .onFailure(self.fail)
-      .onCancel(self.cancel)
+    stamp.onCompletion { result in
+      switch result {
+      case .Success(let value):
+        self.succeed(value)
+      case .Error(let error):
+        self.fail(error)
+      case .Cancelled:
+        self.cancel()
+      }
+    }
+    
+    return self
+  }
+  
+  /**
+  Mimics the given Result, so that it fails or succeeds when the stamps does so (in addition to its pre-existing behavior)
+  Moreover, if the mimiced Result is canceled, the Promise will also cancel itself
+   
+  - parameter stamp: The Result to mimic
+   
+  - returns: The Promise itself
+  */
+  public func mimic(stamp: Result<T>) -> Promise<T> {
+    switch stamp {
+    case .Success(let value):
+      self.succeed(value)
+    case .Error(let error):
+      self.fail(error)
+    case .Cancelled:
+      self.cancel()
+    }
     
     return self
   }

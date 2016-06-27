@@ -20,32 +20,122 @@ public class FileStorage : Storageable{
     
     public required init()
     {
-        storage = NSFileManager()
+        storage     = NSFileManager()
         defaultPath =  String(NSTemporaryDirectory()) + "/Oatmeal/"
     }
     
-    public func get<T:SerializebleObject>()->[T?]
+    public func wipeCache<T:SerializebleObject where T: Resolveable>() -> [T?]
     {
-        var models = [T?]()
-        let base   = T()
-        if let res = base as? Resolveable
-        {
+        let base =  T()
+        var map  =  [T?]()
+        let name =  base.getName()
         
-        let name = res.getName()
-            
         if let paths = getPaths("\(defaultPath)/\(name)")
         {
             for path in paths
             {
-                    
-               if let data  = NSData(contentsOfFile: path), model : T = ~JSON(data : data)
-               {
-                    models.append(model)
+                do
+                {
+                    let modelLocation = "\(defaultPath)/\(name)/\(path)"
+                    if let data       = NSData(contentsOfFile: modelLocation), model : T = ~JSON(data : data)
+                    {
+                        //Current
+                        let dt = NSDate()
                         
+                        //Future
+                        let mt     = NSDate(timeIntervalSince1970: model.expires)
+                        
+                        let result = dt.compare(mt)
+                        
+                        if(result == NSComparisonResult.OrderedDescending)
+                        {
+                            try self.storage.removeItemAtPath(path)
+                        }
+                        else
+                        {
+                            map.append(model)
+                        }
+                    }
+                }
+                catch(let error)
+                {
+                    
                 }
             }
-          }
         }
+        return map
+    }
+    
+    #if(iOS || watchOS || tvOS)
+    
+    public func write(image:UIImage)
+    {
+        
+    
+    }
+    
+    #endif
+    
+    public func write(path:String, text: String)
+    {
+        
+        let url = NSURL(fileURLWithPath: path)
+        
+        do{
+            let handle = try NSFileHandle(forUpdatingURL: url)
+            
+            if let oldText = NSString(data: handle.readDataToEndOfFile(), encoding: NSUTF8StringEncoding)
+            {
+                let replacement = "\(oldText)\(text)"
+            
+                handle.writeData(replacement.dataUsingEncoding(NSUTF8StringEncoding)!)
+            }
+        }
+        catch(let error)
+        {
+            print(error)
+        }
+    }
+    
+    public func find<T:SerializebleObject where T: Resolveable>(condition : (object:T) -> Bool)->[T]?
+    {
+        
+        if let objects : [T] = self.get()
+        {
+            var response = [T]()
+            
+            for object in objects
+            {
+                if condition(object: object)
+                {
+                    response.append(object)
+                }
+            }
+            return response
+        }
+        return nil
+    }
+    
+    
+    public func get<T:SerializebleObject where T: Resolveable>()->[T]
+    {
+        var models   = [T]()
+        let base     = T()
+        
+        let name     = base.getName()
+        
+        if let paths = getPaths("\(defaultPath)/\(name)")
+        {
+            for path in paths
+            {
+               let modelLocation = "\(defaultPath)/\(name)/\(path)"
+               if let data  = NSData(contentsOfFile: modelLocation), model : T = ~JSON(data : data)
+               {
+                    models.append(model)
+               }
+            }
+          }
+        
         return models
     }
 
@@ -61,7 +151,7 @@ public class FileStorage : Storageable{
             do{
                 let json = object.toJSON()
                 let data = try json.rawData()
-                let root = "\(temporaryDirectoryURL)/Oatmeal/\(name)"
+                let root = "\(defaultPath)\(name)"
                 self.createFolder(NSURL(fileURLWithPath: root))
                 
                 self.storage.createFileAtPath("\(root)/\(object.serializationKey).json", contents: data, attributes: nil)
@@ -83,7 +173,7 @@ public class FileStorage : Storageable{
     func getPaths(path:String) -> [String]?
     {
         do{
-          return try self.storage.contentsOfDirectoryAtPath(path)
+           return try self.storage.contentsOfDirectoryAtPath(path)
         }
         catch
         {

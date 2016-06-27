@@ -106,9 +106,9 @@ public class CloudStorage : Storageable
        })
     }
     
-    public func First<T:SerializebleObject>(condition: (object : T) -> Bool,completion:(response: T?) -> Void)
+    public func first<T:SerializebleObject>(condition: (object : T) -> Bool,completion:(response: T?) -> Void)
     {
-        Where(condition)
+        find(condition)
         {
             (response : [T?]) in
             
@@ -121,7 +121,7 @@ public class CloudStorage : Storageable
     }
 
     
-    public func Where<T:SerializebleObject>(condition: (object : T) -> Bool,completion:(response: [T?]) -> Void)
+    public func find<T:SerializebleObject>(condition: (object : T) -> Bool,completion:(response: [T?]) -> Void)
     {
         get()
         {

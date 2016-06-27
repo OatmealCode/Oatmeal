@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-public struct Route{
+public class Route : SerializebleObject{
  
     let baseUrl : String
     public let endpoint: String?
@@ -19,6 +19,7 @@ public struct Route{
     var sslPolicy : ServerTrustPolicyManager?
     var type : RequestType
     var URLRequest: NSURLRequest?
+    public var storageType  = StorageTypes.Networking
     public var headers : [String:String]?
     
     public init(baseUrl:String,endpoint:String? = nil, parameters : [String:String]? = nil,type:RequestType? = nil){
@@ -26,6 +27,7 @@ public struct Route{
         self.baseUrl    = baseUrl
         self.endpoint   = endpoint
         self.parameters = parameters
+        
         
         if let kind = type
         {
@@ -50,6 +52,14 @@ public struct Route{
         else{
             self.type = RequestType.ShouldSendUrlAndReturnJson
         }
+    }
+    
+    public required override init() {
+        self.baseUrl  = ""
+        self.endpoint = ""
+        self.method   = .GET
+        self.type     = .ShouldSendUrlAndReturnJson
+        super.init()
     }
     
     func compose()->URLRequestConvertible

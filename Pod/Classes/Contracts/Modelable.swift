@@ -24,8 +24,6 @@ public protocol Modelable : Resolveable,NSObjectProtocol
 
     var totalItems : [Int:Int] { get set}
     
-    init(data: [String:AnyObject])
-    
     /**
     - parameter value: The Value being set on the Model
     - parameter key : The name of the variable on the model being set
@@ -43,6 +41,7 @@ public protocol Modelable : Resolveable,NSObjectProtocol
     - parameter key: String that represents the current number, Ussually a UUID for an External API
      **/
     func find(key:String) -> Modelable?
+    
 
     /*
         Should be implemented in order to allow for hydration of the model

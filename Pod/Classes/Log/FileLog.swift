@@ -22,6 +22,7 @@ public class FileLog : NSObject,Loggable
 
 	public func write(message:String)
 	{
+        print(message)
         if let config : Configuration = ~Oats()
         {
             self.config = config

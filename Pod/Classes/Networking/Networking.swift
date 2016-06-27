@@ -59,11 +59,9 @@ public class Networking : NSObject,Resolveable
         }
     }
     
-    func fireAs(method: Alamofire.Method,url:String, type: RequestType? = nil, parameters : [String:String]? = nil, completion:(response: ResponseHandler) -> Void )
+    
+    func validateURL(url : String) -> String
     {
-        
-        let requestType : RequestType = type ?? .ShouldSendUrlAndReturnJson
-        
         // If the URL provided does not start with http or https
         // we want to use the previously set base url so that
         // we can build the url from the provided endpoint.
@@ -91,6 +89,15 @@ public class Networking : NSObject,Resolveable
             
             complete = "\(complete)/\(endpoint)"
         }
+        return complete
+    }
+    
+    func fireAs(method: Alamofire.Method,url:String, type: RequestType? = nil, parameters : [String:String]? = nil, completion:(response: ResponseHandler) -> Void )
+    {
+        
+        let requestType : RequestType = type ?? .ShouldSendUrlAndReturnJson
+        
+        var complete = validateURL(url)
         
         var route = Route(method: method, baseUrl: complete, endpoint: nil, type: requestType)
         
@@ -101,6 +108,7 @@ public class Networking : NSObject,Resolveable
         
         return fire(route,completion:completion)
     }
+    
     
     public func fire(route:Route)
     {
@@ -113,7 +121,7 @@ public class Networking : NSObject,Resolveable
             self.fire(route,completion: { handler in })
         }
     }
-    
+
     
     public func fire(route : Route, completion:(response: ResponseHandler) -> Void)
     {
@@ -125,11 +133,16 @@ public class Networking : NSObject,Resolveable
         }
         if(pendingRequest)
         {
-            if let networking : Networking = ~Oats()
+            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+            self.currentRequests += 1
+            dispatch_async(dispatch_get_global_queue(priority, 0))
             {
-                self.currentRequests += 1
-                networking.fire(currentRoute, completion: completion)
+                if let networking : Networking = ~Oats()
+                {
+                    networking.fire(currentRoute, completion: completion)
+                }
             }
+           
         }
         else
         {
@@ -260,6 +273,7 @@ public class Networking : NSObject,Resolveable
 
 extension Networking
 {
+    
     public func GET(url:String, type: RequestType? = nil, parameters : [String:String]? = nil,completion:(response: ResponseHandler) -> Void)
     {
         return fireAs(.GET, url: url, type: type, parameters: parameters,completion: completion)
@@ -301,6 +315,21 @@ extension Networking
             self.serializeResponse(handler , completion: completion)
         })
     }
+    
+    public func route(route:Routing, completion:(response: ResponseHandler) -> Void)
+    {
+        self.fire(route.route, completion: completion)
+    }
+    
+    public func route<T:SerializebleObject>(route:Routing,completion : (response: T, success : Bool)-> Void)
+    {
+        self.route(route,completion: {
+            handler in
+            
+            self.serializeResponse(handler , completion: completion)
+        })
+    }
+    
     
     public func DELETE(url:String, type: RequestType? = nil, parameters : [String:String]? = nil,completion:(response: ResponseHandler) -> Void)
     {

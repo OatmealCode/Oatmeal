@@ -8,6 +8,13 @@
 
 import Foundation
 
+
+///Define JSON Map to retrieve data 
+///Ex 1: "data.users" || "data:users" can be seperated by "." || ":"
+///Define collection type from CloudKit
+
+public typealias Prepared = (Model: SerializebleObject) -> Void
+
 public class Model : SerializebleObject,Modelable,Autoresolves{
     
     public var events   : Events?
@@ -18,7 +25,7 @@ public class Model : SerializebleObject,Modelable,Autoresolves{
     public var customEntityName : String = "Model.*"
     
     public var route : Route?
-    typealias Prepared = (Model: Model) -> Void
+
     
     public var pages: [Int] = [Int]() {
         willSet(newValue)
@@ -52,38 +59,80 @@ public class Model : SerializebleObject,Modelable,Autoresolves{
     
     public var totalItems: [Int:Int] = [1: 0]
     
-    //Default initializer so we can magically set properties
-    public required init(data: [String:AnyObject])
+    class func from(route: Routing, prepared: Prepared)
     {
-        self.reloaded    = false
-        self.maxPages    = 1
-        super.init()
-        for (key,value) in data
-        {
-            setValue(value, forKey: key)
-        }
+        
     }
     
     /**
        - parameter route : The Route from where to get the data to serialize this model.
     **/
-    class func from(route:Route, prepared:Prepared)
+    public class func from<T: SerializebleObject>(route:Route, prepared: (Model: SerializebleObject) -> (), condition : ((object:T) -> Bool)? = nil)
     {
-        if let http : Networking = ~Oats()
+        //Use paremeters as filter keys for CloudKit & Cache
+        switch(route.storageType)
         {
-            http.fire(route, completion: { response in
-                if let json = response.response, serialized : Model = ~json
+           case .Networking:
+                if let http : Networking = ~Oats()
                 {
-                    prepared(Model: serialized)
+                    http.fire(route, completion: { response in
+                        if let json = response.response, serialized : T = ~json
+                        {
+                            if let validate = condition where validate(object: serialized)
+                            {
+                                prepared(Model: serialized)
+                                
+                            }
+                            else
+                            {
+                                prepared(Model: serialized)
+                            }
+                        }
+                    })
                 }
-            })
+          case .CloudKit:
+            if let cloud : CloudStorage = ~Oats()
+            {
+                //Return the first model from the cloud that meets the criteria
+                cloud.get
+                {
+                    (response : [T?]) in
+                    
+                    for models in response{
+                        if let model = models, validate = condition where validate(object : model)
+                        {
+                             prepared(Model: model)
+                             return
+                        }
+                    }
+                    
+                }
+            }
+        case .Filesystem:
+            if let filesystem : FileStorage = ~Oats()
+            {
+                if let validate = condition{
+                    filesystem.find(validate)
+                }
+            }
+        case .Cache:
+            //Possibilities 
+            // /users/{1} as KEY
+            // dot notation of paremters?
+            if let cache : FileCache = ~Oats()
+            {
+                
+            }
         }
+        
+       
     }
     
     public required init()
     {
         self.reloaded = false
         self.maxPages = 1
+        self.customEntityName = "Model.*"
         super.init()
         
         reloadModel()
@@ -112,16 +161,16 @@ public class Model : SerializebleObject,Modelable,Autoresolves{
     }
     
     
-    public func find(key:String)->Modelable?
+    public class func find(key:String)->Modelable?
     {
         return Model.find(key)
     }
     
     
-    public class func find(key: String) -> Modelable?
+    public func find(key: String) -> Modelable?
     {
         //fatalError("This method must be overriden")
-        return self.init()
+        return self.dynamicType.init()
     }
     
     
