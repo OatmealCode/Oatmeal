@@ -28,7 +28,7 @@ pod "Oatmeal"
 
 ## Author
 
-mikenolimits, http://instagram.com/mikenolimits, http://twitter.com/mikenolimits
+mikenolimits
 
 ## License
 
